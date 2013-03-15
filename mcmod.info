@@ -1,0 +1,21 @@
+[
+{
+  "modid": "minetechplus",
+  "name": "MineTech+",
+  "description": "New technology for our old friend Steve too enjoy, without going too far apart from the good old Minecraft feeling",
+  "version": "@VERSION@",
+  "mcversion": "1.5",
+  "url": "",
+  "updateUrl": "",
+  "authors": [
+    "SpeakersMind"
+  ],
+  "credits": "By SpeakersMind",
+  "logoFile": "",
+  "screenshots": [
+  ],
+  "parent":"",
+  "dependencies": [
+  ]
+}
+]

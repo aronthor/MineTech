@@ -1,0 +1,15 @@
+MineTech+
+
+Things too do for first pre release
+- Make ores spawn
+- Make ore processing possible (ingots / gems)
+- Make most resource gathering possible for users too be able to dive right in in next release
+- Get Textures going
+
+
+
+
+Ores planed
+- Tin
+- Copper
+- 
