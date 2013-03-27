@@ -1,15 +1,33 @@
 MineTech+
 
+--- IMPORTANT LATER ON CHANGES
+- Move IdeaPopper registration too common proxy
+
 Things too do for first pre release
 - Make ores spawn
 - Make ore processing possible (ingots / gems)
 - Make most resource gathering possible for users too be able to dive right in in next release
 - Get Textures going
+- Implement the first prototype of the Workstation
+- Implement ideas
 
 
+Ideas
+- When crafting in a crafting table/workstation (and hopefully rp2 project table) random chance of a idea too pop out.. you then refine the idea and can then build it
+- Simular too thaumcraft 3 research 
+- Will not stack
+- Will have different information(tooltip)
+- Will contain nbt with components used when crafting and crafting resault
+
+
+Workstation
+- MineTech+ crafting system
 
 
 Ores planed
 - Tin
 - Copper
-- 
+
+
+Other
+- All tile entities will know its owner
