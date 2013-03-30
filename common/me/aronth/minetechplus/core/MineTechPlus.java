@@ -2,17 +2,18 @@ package me.aronth.minetechplus.core;
 
 import java.util.logging.Logger;
 
-import me.aronth.minetechplus.ideas.IdeaPopper;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.Mod.PreInit;
+import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.common.network.NetworkMod;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version=Reference.VERSION)
+@NetworkMod(clientSideRequired = true, serverSideRequired = true, channels = {"minetechplus"})
 public class MineTechPlus {
 	
 	// A logger too log the mod.. dont know why i need it right now
@@ -21,6 +22,9 @@ public class MineTechPlus {
 	// Mod instance as requested by forge
 	@Instance("minetech")
 	public static MineTechPlus instance;
+	
+	@SidedProxy(clientSide = "me.aronth.minetechplus.core.ProxyClient", serverSide = "me.aronth.minetechplus.core.ProxyCommon")
+	public static ProxyCommon proxy;
 	
 	// Configuration Handler that handles the config file
 	public ConfigHandler config;
@@ -39,8 +43,7 @@ public class MineTechPlus {
 		items = new ItemHandler(config);
 		blocks = new BlockHandler(config);
 		
-		
-		GameRegistry.registerCraftingHandler(new IdeaPopper());
+		proxy.registerHandlers();
 	}
 	
 }

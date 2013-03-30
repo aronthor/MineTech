@@ -23,6 +23,7 @@ public class ItemIdea extends MTItem {
 	@Override
     public void addInformation(ItemStack stack, EntityPlayer me, List list, boolean par4) {
 		try{
+			list.add("Crafted:"+NBTTagHelper.getString(stack, "resault"));
 			//String[] recipe = new String[NBTTagHelper.getInt(stack, "craftingSlots")];
 			for(int i = 0; i < NBTTagHelper.getInt(stack, "craftingSlots"); i++){
 				//recipe[i] = NBTTagHelper.getString(stack, "matrix"+i);

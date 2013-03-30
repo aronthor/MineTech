@@ -1,7 +1,7 @@
 MineTech+
 
 --- IMPORTANT LATER ON CHANGES
-- Move IdeaPopper registration too common proxy
+- Fix phantom items
 
 Things too do for first pre release
 - Make ores spawn
