@@ -27,6 +27,7 @@ public class IdeaPopper implements ICraftingHandler{
 		Random rand = new Random();
 		
 		if(rand.nextInt(10) == 1 && !world.isRemote){ // Thanks to Zorn_Taov for helping fixing phantom items
+			
 			//player.sendChatToPlayer("An idea popped out !");
 			ItemStack idea = new ItemStack(ItemHandler.idea, 1);
 				
