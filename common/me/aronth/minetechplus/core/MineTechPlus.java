@@ -2,8 +2,8 @@ package me.aronth.minetechplus.core;
 
 import java.util.logging.Logger;
 
+import me.aronth.minetechplus.ideas.IdeaManager;
 import me.aronth.minetechplus.ideas.IdeaPopper;
-
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
@@ -36,6 +36,9 @@ public class MineTechPlus {
 	public BlockHandler blocks;
 	public ItemHandler items;
 	public CraftingHandler crafting;
+	
+	// The Idea Manager.. for managing all'em ideas
+	public IdeaManager ideaManager = new IdeaManager();
 	
 	@PreInit
 	public void preInit(FMLPreInitializationEvent e){

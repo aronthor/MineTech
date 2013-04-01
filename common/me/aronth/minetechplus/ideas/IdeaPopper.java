@@ -3,6 +3,7 @@ package me.aronth.minetechplus.ideas;
 import java.util.Random;
 
 import me.aronth.minetechplus.core.ItemHandler;
+import me.aronth.minetechplus.core.MineTechPlus;
 import me.aronth.minetechplus.core.helpers.NBTTagHelper;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -37,6 +38,20 @@ public class IdeaPopper implements ICraftingHandler{
 				}else{
 					NBTTagHelper.setString(idea, "matrix"+i, "-");
 				}
+			}
+			
+			int thought = 0;
+			
+			for(int i = 0; i < crafting.getSizeInventory(); i++){
+				thought = MineTechPlus.instance.ideaManager.getIdeaWithResource(crafting.getStackInSlot(i));
+				if(thought > 0){
+					NBTTagHelper.setInteger(idea, "thought", thought);
+					break;
+				}
+			}
+			
+			if(thought == 0){
+				NBTTagHelper.setInteger(idea, "thought", 0);
 			}
 			
 			NBTTagHelper.setInteger(idea, "craftingSlots", crafting.getSizeInventory());

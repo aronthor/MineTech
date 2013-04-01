@@ -16,7 +16,7 @@ public class ItemBookWondering extends MTItem{
 	// This is for opening the gui of the book
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player){
 		if(NBTTagHelper.hasTag(stack, "owner") && NBTTagHelper.getString(stack, "owner") == player.username){
-			
+			player.sendChatToPlayer("A Gui should open !!");
 		}else{
 			if(NBTTagHelper.hasTag(stack, "owner")){
 				player.sendChatToPlayer("-- This is not your book !!");

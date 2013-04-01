@@ -2,6 +2,7 @@ package me.aronth.minetechplus.items;
 
 import java.util.List;
 
+import me.aronth.minetechplus.core.MineTechPlus;
 import me.aronth.minetechplus.core.helpers.NBTTagHelper;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -28,6 +29,9 @@ public class ItemIdea extends MTItem {
 				if(!list.contains(NBTTagHelper.getString(stack, "matrix"+i)) && NBTTagHelper.getString(stack, "matrix"+i) != "-"){
 					list.add(NBTTagHelper.getString(stack, "matrix"+i));
 				}
+			}
+			if(NBTTagHelper.hasTag(stack, "thought") && NBTTagHelper.getInt(stack, "thought") > 0){
+				list.add(MineTechPlus.instance.ideaManager.ideas.get(NBTTagHelper.getInt(stack, "thought")).getName());
 			}
 		}catch(NullPointerException e){
 			System.out.println(e.getMessage());
