@@ -9,9 +9,9 @@ import net.minecraftforge.common.Property;
 public class ConfigHandler {
 	
 	// Blocks
-	public int IDOreBlock;
+	public int IDOreBlock, IDWorkstation;
 	// Items
-	public int IDIdeaItem;
+	public int IDIdeaItem, IDWonderingBook;
 	// Mish
 	public int ideaChance;
 	
@@ -28,15 +28,23 @@ public class ConfigHandler {
 			
 			// Load Block Ids
 			
-			Property OreBlock = conf.getBlock("OreBlocks", 800);
-			OreBlock.comment = "Ore Block ID, this includes Tin, Copper and Others";
-			IDOreBlock = OreBlock.getInt();
+			Property blockOre = conf.getBlock("OreBlocks", 800);
+			blockOre.comment = "Ore Block ID, this includes Tin, Copper and Others";
+			IDOreBlock = blockOre.getInt();
+			
+			Property blockWorkstation = conf.getBlock("Workstation", 801);
+			blockWorkstation.comment = "The workstation where you refine your ideas and craft items";
+			IDWorkstation = blockWorkstation.getInt();
 			
 			// Load Item Ids
 			
-			Property ideaItem = conf.getItem("Idea", 4000);
-			ideaItem.comment = "The idea paper that falls on the ground";
-			IDIdeaItem = ideaItem.getInt();
+			Property itemIdea = conf.getItem("Idea", 4000);
+			itemIdea.comment = "The idea paper that falls on the ground";
+			IDIdeaItem = itemIdea.getInt();
+			
+			Property itemBookOfWondering = conf.getItem("BookOfWondering", 4001);
+			itemBookOfWondering.comment = "The Book of Wondering, for you too store your ideas";
+			IDWonderingBook = itemBookOfWondering.getInt();
 			
 		}catch(RuntimeException e){
 			MineTechPlus.instance.log.log(Level.INFO, "Config file not found, creating new one");

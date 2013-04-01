@@ -32,9 +32,10 @@ public class MineTechPlus {
 	// Configuration Handler that handles the config file
 	public ConfigHandler config;
 	
-	// Item and Block Handlers, just for simple management and cleaner code
+	// Item, Block and Crafting Handlers, just for simple management and cleaner code
 	public BlockHandler blocks;
 	public ItemHandler items;
+	public CraftingHandler crafting;
 	
 	@PreInit
 	public void preInit(FMLPreInitializationEvent e){
@@ -45,6 +46,7 @@ public class MineTechPlus {
 	public void initMod(FMLInitializationEvent e){
 		items = new ItemHandler(config);
 		blocks = new BlockHandler(config);
+		crafting = new CraftingHandler();
 		
 		//proxy.registerHandlers();
 		
