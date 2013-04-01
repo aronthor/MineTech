@@ -2,8 +2,7 @@ package me.aronth.minetechplus.ideas;
 
 import java.util.ArrayList;
 
-import net.minecraft.block.Block;
-import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 
 public class IdeaManager {
 
@@ -19,14 +18,11 @@ public class IdeaManager {
 		ideas.add(idea);
 	}
 	
-	public int getIdeaWithResource(Object resource){
+	public int getIdeaWithResource(ItemStack stack){
 		int id = 0;
 		
-		if(!(resource instanceof Block) || !(resource instanceof Item))
-			return 0;
-		
 		for(int i = 0; i < ideas.size(); i++){
-			if(ideas.get(i).resourcesUsed(resource)){
+			if(ideas.get(i).resourcesUsed(stack)){
 				id = i;
 				break;
 			}

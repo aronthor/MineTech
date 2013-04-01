@@ -1,7 +1,9 @@
 MineTech+
 
 --- IMPORTANT LATER ON CHANGES
-
+- Fix the ideas too have a dedicated id for the thought they are for!
+- Fix book of wondering forgetting its owner
+- Fix ideas have should come, not fail because of an idea was not found using the resources in the crafting
 
 Things too do for first pre release
 - ( )Make ores spawn

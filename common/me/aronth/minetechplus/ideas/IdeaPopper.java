@@ -28,9 +28,8 @@ public class IdeaPopper implements ICraftingHandler{
 		Random rand = new Random();
 		
 		if(rand.nextInt(10) == 1 && !world.isRemote){ // Thanks to Zorn_Taov for helping fixing phantom items
-			
-			player.sendChatToPlayer("-- You just got an idea! --");
 			ItemStack idea = new ItemStack(ItemHandler.idea, 1);
+			System.out.println("You should get an idea");
 				
 			for(int i = 0; i < crafting.getSizeInventory(); i++){
 				if(crafting.getStackInSlot(i) != null){
@@ -40,25 +39,30 @@ public class IdeaPopper implements ICraftingHandler{
 				}
 			}
 			
-			int thought = 0;
+			int thought = -1;
 			
 			for(int i = 0; i < crafting.getSizeInventory(); i++){
-				thought = MineTechPlus.instance.ideaManager.getIdeaWithResource(crafting.getStackInSlot(i));
-				if(thought > 0){
-					NBTTagHelper.setInteger(idea, "thought", thought);
-					break;
+				try{
+					thought = MineTechPlus.instance.ideaManager.getIdeaWithResource(crafting.getStackInSlot(i));
+					if(thought >= 0){
+						NBTTagHelper.setInteger(idea, "thought", thought);
+						break;
+					}
+				}catch(NullPointerException e){
+					return;
 				}
 			}
 			
-			if(thought == 0){
+			/*if(thought == 0){
 				NBTTagHelper.setInteger(idea, "thought", 0);
-			}
+			}*/
 			
 			NBTTagHelper.setInteger(idea, "craftingSlots", crafting.getSizeInventory());
 			NBTTagHelper.setString(idea, "resault", item.getDisplayName());
 				
 			EntityItem entityIdea = new EntityItem(world, player.posX, player.posY, player.posZ, idea);
-			world.spawnEntityInWorld(entityIdea);		
+			world.spawnEntityInWorld(entityIdea);
+			player.sendChatToPlayer("-- You just got an idea! --");
 		}
 	}
 

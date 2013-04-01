@@ -1,7 +1,7 @@
 package me.aronth.minetechplus.ideas;
 
 import net.minecraft.block.Block;
-import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 
 public class IdeaDualFurnace implements IIdea {
 
@@ -16,16 +16,9 @@ public class IdeaDualFurnace implements IIdea {
 	}
 
 	@Override
-	public boolean resourcesUsed(Object obj) {
-		if(obj instanceof Block){
-			if(((Block) obj).blockID == Block.cobblestone.blockID)
-				return true;
-		}
-		
-		if(obj instanceof Item){
-			if(((Item) obj).itemID == Item.ingotIron.itemID)
-				return true;
-		}
+	public boolean resourcesUsed(ItemStack stack) {
+		if(stack.isItemEqual(new ItemStack(Block.cobblestone)))
+			return true;
 		return false;
 	}
 
