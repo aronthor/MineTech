@@ -22,7 +22,6 @@ public class BlockWorkstation extends MTBlockContainer {
 		if(!me.isSneaking() && !world.isRemote){
 			//me.openGui(MineTechPlus.instance, Reference.GUI_WORKSTATION, world, x, y, z);
 			//me.sendChatToPlayer("OPEN GUI NOW !!");
-			
 		}
 		return false;
 	}
