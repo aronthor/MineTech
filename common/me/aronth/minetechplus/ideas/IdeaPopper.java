@@ -3,12 +3,13 @@ package me.aronth.minetechplus.ideas;
 import java.util.Random;
 
 import me.aronth.minetechplus.core.ItemHandler;
-import me.aronth.minetechplus.core.MineTechPlus;
-import me.aronth.minetechplus.core.helpers.NBTTagHelper;
+import me.aronth.minetechplus.core.Reference;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
 import cpw.mods.fml.common.ICraftingHandler;
 
@@ -27,42 +28,69 @@ public class IdeaPopper implements ICraftingHandler{
 	public void popOutAnIdea(World world, EntityPlayer player, ItemStack item, IInventory crafting){
 		Random rand = new Random();
 		
-		if(rand.nextInt(10) == 1 && !world.isRemote){ // Thanks to Zorn_Taov for helping fixing phantom items
+		if(rand.nextInt(3) == 1 && !world.isRemote){ // Thanks to Zorn_Taov for helping fixing phantom items
+			
+			// Make the idea !!
 			ItemStack idea = new ItemStack(ItemHandler.idea, 1);
-			System.out.println("You should get an idea");
-				
-			for(int i = 0; i < crafting.getSizeInventory(); i++){
-				if(crafting.getStackInSlot(i) != null){
-					NBTTagHelper.setString(idea, "matrix"+i, crafting.getStackInSlot(i).getDisplayName());
-				}else{
-					NBTTagHelper.setString(idea, "matrix"+i, "-");
-				}
+			
+			// Just while making the idea popper
+			if(Reference.DEBUG)System.out.println("You hit the random chance");
+			
+			// get the whole crafting grid
+			ItemStack[] inv = new ItemStack[crafting.getSizeInventory()];
+			for(int i = 0; i < inv.length; i++)
+				inv[i] = crafting.getStackInSlot(i);
+			
+			// get an idea from the items in the grid, if no idea is available, return nothing
+			int thought = IdeaManager.instance.getIdeaFromGrid(inv);
+			
+			if(thought == -1)
+				return;
+			
+			if(IdeaManager.instance.hasPlayerUnlockIdea(player, thought)){
+				System.out.println("You already have had this idea!");
+				return;
 			}
 			
-			int thought = -1;
+			IdeaManager.instance.unlockIdea(player, thought);
 			
-			for(int i = 0; i < crafting.getSizeInventory(); i++){
-				try{
-					thought = MineTechPlus.instance.ideaManager.getIdeaWithResource(crafting.getStackInSlot(i));
-					if(thought >= 0){
-						NBTTagHelper.setInteger(idea, "thought", thought);
-						break;
-					}
-				}catch(NullPointerException e){
-					return;
-				}
-			}
+			// Save the crafting grid in the idea item
+			NBTTagCompound compound = new NBTTagCompound();
+			NBTTagList craftGrid = new NBTTagList();
+
+	        for (int i = 0; i < inv.length; ++i){
+	            if (inv[i] != null){
+	                NBTTagCompound nbttagcompound1 = new NBTTagCompound();
+	                nbttagcompound1.setByte("Slot", (byte)i);
+	                inv[i].writeToNBT(nbttagcompound1);
+	                craftGrid.appendTag(nbttagcompound1);
+	            }
+	        }
+
+	        // Save the information too the compound
+	        compound.setTag("Items", craftGrid);
+	        compound.setInteger("thought", thought);
 			
-			/*if(thought == 0){
-				NBTTagHelper.setInteger(idea, "thought", 0);
-			}*/
+	        NBTTagList result = new NBTTagList();
+	        
+	        if (item != null){
+                NBTTagCompound comp = new NBTTagCompound();
+                item.writeToNBT(comp);
+                result.appendTag(comp);
+            }
+	        
+	        // Save the resault tag too the compound
+	        compound.setTag("Result", result);
+	        
+	        // Lets not forget too save the tag compound to the item stack (again)
+	        idea.setTagCompound(compound);
+	        
+			// spawn the item in world
+			EntityItem entItem = new EntityItem(world, player.posX, player.posY, player.posZ, idea);
+			world.spawnEntityInWorld(entItem);
 			
-			NBTTagHelper.setInteger(idea, "craftingSlots", crafting.getSizeInventory());
-			NBTTagHelper.setString(idea, "resault", item.getDisplayName());
-				
-			EntityItem entityIdea = new EntityItem(world, player.posX, player.posY, player.posZ, idea);
-			world.spawnEntityInWorld(entityIdea);
-			player.sendChatToPlayer("-- You just got an idea! --");
+			// And finally let the player know of the idea
+			player.sendChatToPlayer("-- You just had an idea! --");
 		}
 	}
 

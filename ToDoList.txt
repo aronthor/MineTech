@@ -1,9 +1,7 @@
 MineTech+
 
 --- IMPORTANT LATER ON CHANGES
-- Fix the ideas too have a dedicated id for the thought they are for!
-- Fix book of wondering forgetting its owner
-- Fix ideas have should come, not fail because of an idea was not found using the resources in the crafting
+- Make player not have the same idea twice
 
 Things too do for first pre release
 - ( )Make ores spawn
@@ -15,16 +13,16 @@ Things too do for first pre release
 
 
 Ideas
-- When crafting in a crafting table/workstation (and hopefully rp2 project table) random chance of a idea too pop out.. you then refine the idea and can then build it
-- Simular too thaumcraft 3 research 
-- Will not stack
-- Will have different information(tooltip)
-- Will contain nbt with components used when crafting and crafting resault
-- Implement book of wondering !!
+- (x)When crafting in a crafting table/workstation (and hopefully rp2 project table) random chance of a idea too pop out.. you then refine the idea and can then build it
+- (x)Simular too thaumcraft 3 research 
+- (x)Will not stack
+- (x)Will have different information(tooltip)
+- (x)Will contain nbt with components used when crafting and crafting resault
+- (x)Implement book of wondering !!
 
 
 Workstation
-- MineTech+ crafting system
+- Refining ideas and crafting the items
 
 
 Ores planed

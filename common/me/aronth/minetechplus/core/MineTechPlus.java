@@ -2,8 +2,9 @@ package me.aronth.minetechplus.core;
 
 import java.util.logging.Logger;
 
+import net.minecraft.creativetab.CreativeTabs;
+
 import me.aronth.minetechplus.ideas.IdeaManager;
-import me.aronth.minetechplus.ideas.IdeaPopper;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
@@ -13,7 +14,6 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
-import cpw.mods.fml.common.registry.GameRegistry;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version=Reference.VERSION)
 @NetworkMod(clientSideRequired = true, serverSideRequired = true, channels = {"minetechplus"})
@@ -31,6 +31,9 @@ public class MineTechPlus {
 	
 	// Configuration Handler that handles the config file
 	public ConfigHandler config;
+	
+	// Creative Tab for MineTech+
+	public static CreativeTabs tab = new CreativeTabMineTech(CreativeTabs.getNextID(), Reference.MOD_ID);
 	
 	// Item, Block and Crafting Handlers, just for simple management and cleaner code
 	public BlockHandler blocks;
@@ -51,9 +54,7 @@ public class MineTechPlus {
 		blocks = new BlockHandler(config);
 		crafting = new CraftingHandler();
 		
-		//proxy.registerHandlers();
-		
-		GameRegistry.registerCraftingHandler(new IdeaPopper());
+		proxy.registerHandlers();
 	}
 	
 }

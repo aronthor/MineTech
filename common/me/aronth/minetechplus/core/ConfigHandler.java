@@ -12,8 +12,9 @@ public class ConfigHandler {
 	public int IDOreBlock, IDWorkstation;
 	// Items
 	public int IDIdeaItem, IDWonderingBook;
-	// Mish
+	// Misc
 	public int ideaChance;
+	public static int renderId;
 	
 	public ConfigHandler(File configFile){
 		// Loads The Configuration File into Forges Configuration

@@ -14,7 +14,7 @@ public class IdeaDualFurnace implements IIdea {
 	public String getDescription() {
 		return "This is the DualFurnace 3000 here.";
 	}
-
+	
 	@Override
 	public boolean resourcesUsed(ItemStack stack) {
 		if(stack.isItemEqual(new ItemStack(Block.cobblestone)))
