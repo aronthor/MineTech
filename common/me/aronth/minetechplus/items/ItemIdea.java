@@ -9,6 +9,7 @@ import me.aronth.minetechplus.ideas.IdeaManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -19,6 +20,12 @@ public class ItemIdea extends MTItem {
 		this.setUnlocalizedName("Idea");
 		this.setCreativeTab(MineTechPlus.tab);
 		this.setMaxStackSize(1);
+	}
+	
+	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player){
+		stack.stackTagCompound.setBoolean("open", true);
+		player.openGui(MineTechPlus.instance, Reference.GUI_IDEA, world, (int)player.posX, (int)player.posY, (int)player.posZ);
+		return stack;
 	}
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })

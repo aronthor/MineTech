@@ -1,5 +1,6 @@
 package me.aronth.minetechplus.core;
 
+import me.aronth.minetechplus.containers.ContainerIdea;
 import me.aronth.minetechplus.ideas.IdeaPopper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
@@ -14,6 +15,8 @@ public class ProxyCommon implements IGuiHandler{
 
 	@Override
 	public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
+		if(ID == Reference.GUI_IDEA)
+			return new ContainerIdea(player, world, x, y, z);
 		return null;
 	}
 

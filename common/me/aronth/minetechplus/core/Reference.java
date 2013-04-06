@@ -9,4 +9,5 @@ public class Reference {
 	
 	// Gui IDs !!
 	public static final int GUI_WORKSTATION = 1;
+	public static final int GUI_IDEA = 2;
 }
