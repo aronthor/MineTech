@@ -16,7 +16,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version=Reference.VERSION)
-@NetworkMod(clientSideRequired = true, serverSideRequired = true, channels = {"minetechplus"})
+@NetworkMod(clientSideRequired = true, serverSideRequired = true, channels = {"minetechplus"}, packetHandler = PacketHandler.class)
 public class MineTechPlus {
 	
 	// A logger too log the mod.. dont know why i need it right now

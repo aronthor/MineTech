@@ -1,7 +1,7 @@
 package me.aronth.minetechplus.core;
 
-import me.aronth.minetechplus.containers.ContainerIdea;
 import me.aronth.minetechplus.ideas.IdeaPopper;
+import me.aronth.minetechplus.inventory.ContainerIdea;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import cpw.mods.fml.common.network.IGuiHandler;

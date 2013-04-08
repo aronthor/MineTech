@@ -70,6 +70,7 @@ public class IdeaPopper implements ICraftingHandler{
 	        // Save the information too the compound
 	        compound.setTag("Items", craftGrid);
 	        compound.setInteger("thought", thought);
+	        compound.setInteger("invSize", crafting.getSizeInventory());
 			
 	        NBTTagList result = new NBTTagList();
 	        

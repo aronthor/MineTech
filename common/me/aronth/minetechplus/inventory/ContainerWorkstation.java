@@ -1,4 +1,4 @@
-package me.aronth.minetechplus.containers;
+package me.aronth.minetechplus.inventory;
 
 import me.aronth.minetechplus.blocks.tileentitys.TileWorkstation;
 import net.minecraft.entity.player.EntityPlayer;
