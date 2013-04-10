@@ -1,8 +1,10 @@
 package me.aronth.minetechplus.ideas;
 
+import static me.aronth.minetechplus.lib.Constants.NBT_IDEAS_UNLOCKED;
+import static me.aronth.minetechplus.lib.Constants.NBT_IDEA_UNLOCKED;
+
 import java.util.ArrayList;
 
-import me.aronth.minetechplus.core.Reference;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -36,7 +38,7 @@ public class IdeaManager {
 	
 	public boolean hasPlayerUnlockIdea(EntityPlayer me, int idea){
 		// Thanks too excalibr23 for helping me with this information
-		NBTTagCompound tag =  me.getEntityData();
+		/*NBTTagCompound tag =  me.getEntityData();
 		if(tag.hasKey(Reference.MOD_ID+":ideas")){
 			NBTTagCompound ideas = tag.getCompoundTag(Reference.MOD_ID+":ideas");
 			if(ideas.hasKey("ideasGotten")){
@@ -47,11 +49,21 @@ public class IdeaManager {
 				}
 			}
 		}
+		return false;*/
+		NBTTagCompound tag = me.getEntityData();
+		if(tag.hasKey(NBT_IDEAS_UNLOCKED)){
+			if(tag.hasKey(NBT_IDEA_UNLOCKED+idea))
+				return true;
+		}
 		return false;
 	}
 	
+	public IIdea getIdea(int i){
+		return this.ideas.get(i);
+	}
+	
 	public void unlockIdea(EntityPlayer me, int idea){
-		NBTTagCompound tag =  me.getEntityData();
+		/*NBTTagCompound tag =  me.getEntityData();
 		if(tag.hasKey(Reference.MOD_ID+":ideas")){
 			NBTTagCompound ideas = tag.getCompoundTag(Reference.MOD_ID+":ideas");
 			if(ideas.hasKey("ideasGotten")){
@@ -60,6 +72,12 @@ public class IdeaManager {
 				ideas.setIntArray("ideasGotten", gotten);
 				tag.setCompoundTag(Reference.MOD_ID+":ideas",ideas);
 			}
+		}*/
+		NBTTagCompound tag = me.getEntityData();
+		if(tag.hasKey(NBT_IDEAS_UNLOCKED)){
+			if(!tag.hasKey(NBT_IDEA_UNLOCKED)){
+				tag.setBoolean(NBT_IDEA_UNLOCKED+idea, true);
+			}
 		}
 	}
 	
@@ -67,9 +85,11 @@ public class IdeaManager {
 		int idea = -1;
 		
 		for(int i = 0; i < inv.length; i++){
-			idea = getIdeaWithResource(inv[i]);
-			if(idea >= 0)
-				break;
+			if(inv[i] != null){
+				idea = getIdeaWithResource(inv[i]);
+				if(idea >= 0)
+					break;
+			}
 		}
 		
 		return idea;

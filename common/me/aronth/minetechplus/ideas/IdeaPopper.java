@@ -12,6 +12,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
 import cpw.mods.fml.common.ICraftingHandler;
+import static me.aronth.minetechplus.lib.Constants.*;
 
 public class IdeaPopper implements ICraftingHandler{
 	
@@ -28,7 +29,7 @@ public class IdeaPopper implements ICraftingHandler{
 	public void popOutAnIdea(World world, EntityPlayer player, ItemStack item, IInventory crafting){
 		Random rand = new Random();
 		
-		if(rand.nextInt(3) == 1 && !world.isRemote){ // Thanks to Zorn_Taov for helping fixing phantom items
+		if(rand.nextInt(3) == 1){ // Thanks to Zorn_Taov for helping fixing phantom items
 			
 			// Make the idea !!
 			ItemStack idea = new ItemStack(ItemHandler.idea, 1);
@@ -69,8 +70,8 @@ public class IdeaPopper implements ICraftingHandler{
 
 	        // Save the information too the compound
 	        compound.setTag("Items", craftGrid);
-	        compound.setInteger("thought", thought);
-	        compound.setInteger("invSize", crafting.getSizeInventory());
+	        compound.setInteger(NBT_IDEA, thought);
+	        compound.setInteger(NBT_INVENTORY_SIZE, crafting.getSizeInventory());
 			
 	        NBTTagList result = new NBTTagList();
 	        
@@ -86,9 +87,11 @@ public class IdeaPopper implements ICraftingHandler{
 	        // Lets not forget too save the tag compound to the item stack (again)
 	        idea.setTagCompound(compound);
 	        
-			// spawn the item in world
-			EntityItem entItem = new EntityItem(world, player.posX, player.posY, player.posZ, idea);
-			world.spawnEntityInWorld(entItem);
+	        if(!world.isRemote){
+	        	// spawn the item in world
+	        	EntityItem entItem = new EntityItem(world, player.posX, player.posY, player.posZ, idea);
+	        	world.spawnEntityInWorld(entItem);
+	        }
 			
 			// And finally let the player know of the idea
 			player.sendChatToPlayer("-- You just had an idea! --");

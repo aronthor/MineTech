@@ -1,12 +1,19 @@
 package me.aronth.minetechplus.items;
 
+import static me.aronth.minetechplus.lib.Constants.NBT_IDEAS_UNLOCKED;
+import static me.aronth.minetechplus.lib.Constants.NBT_IDEA_UNLOCKED;
+
+import java.util.List;
+
 import me.aronth.minetechplus.core.MineTechPlus;
-import me.aronth.minetechplus.core.Reference;
 import me.aronth.minetechplus.core.helpers.NBTTagHelper;
+import me.aronth.minetechplus.ideas.IdeaManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemBookWondering extends MTItem{
 
@@ -30,12 +37,22 @@ public class ItemBookWondering extends MTItem{
 			}
 		}*/
 		
+		/*if(world.isRemote){
+			System.out.println("Remote");
+		}else{
+			System.out.println("Not Remote");
+		}*/
+		
+		player.getEntityData().setString("test","testtest");
+		
 		NBTTagCompound tags = player.getEntityData();
-		tags.getCompoundTag(Reference.MOD_ID+":ideas");
-		if(tags.hasKey("ideasGotten")){
+		if(tags.hasKey(NBT_IDEAS_UNLOCKED)){
 			player.sendChatToPlayer("you have ideas !!");
+		}else{
+			tags.setBoolean(NBT_IDEAS_UNLOCKED, true);
 		}
 		
+
         return stack;
     }
 
@@ -53,6 +70,19 @@ public class ItemBookWondering extends MTItem{
 		}
     	
         return name;
+    }
+    
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+	@SideOnly(Side.CLIENT)
+	@Override
+    public void addInformation(ItemStack stack, EntityPlayer me, List list, boolean par4) {
+    	NBTTagCompound tag = me.getEntityData();
+    	for(int i = 0; i < IdeaManager.instance.ideas.size(); i++){
+    		if(tag.hasKey(NBT_IDEA_UNLOCKED+i))
+    			list.add(IdeaManager.instance.getIdea(i).getName());
+    	}
+    	if(me.getEntityData().hasKey("test"))
+    		list.add(me.getEntityData().getString("test"));
     }
 	
 }

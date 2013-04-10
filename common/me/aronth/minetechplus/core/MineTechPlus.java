@@ -23,7 +23,7 @@ public class MineTechPlus {
 	public Logger log = FMLLog.getLogger();//Logger.getLogger("MineTech+");
 	
 	// Mod instance as requested by forge
-	@Instance("minetech")
+	@Instance(Reference.MOD_ID)
 	public static MineTechPlus instance;
 	
 	@SidedProxy(clientSide = "me.aronth.minetechplus.core.ProxyClient", serverSide = "me.aronth.minetechplus.core.ProxyCommon")

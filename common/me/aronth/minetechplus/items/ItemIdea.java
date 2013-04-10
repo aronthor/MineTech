@@ -6,12 +6,9 @@ import me.aronth.minetechplus.core.MineTechPlus;
 import me.aronth.minetechplus.core.Reference;
 import me.aronth.minetechplus.core.helpers.NBTTagHelper;
 import me.aronth.minetechplus.ideas.IdeaManager;
-import me.aronth.minetechplus.inventory.InventoryIdea;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -48,6 +45,24 @@ public class ItemIdea extends MTItem {
 				list.add("\u00a7oCrafted: \u00a78"+resultItem.getDisplayName());
 			}
 			
+			/*ItemStack[] stacks;
+			
+			NBTTagList nbttaglist = stack.stackTagCompound.getTagList("Items");
+	        stacks = new ItemStack[stack.stackTagCompound.getInteger("invSize")];
+
+	        for (int i = 0; i < nbttaglist.tagCount(); ++i){
+	            NBTTagCompound comp2 = (NBTTagCompound)nbttaglist.tagAt(i);
+	            int j = comp2.getByte("Slot") & 255;
+	            if (j >= 0 && j < stacks.length){
+	                stacks[j] = ItemStack.loadItemStackFromNBT(comp2);
+	            }
+	        }
+	        
+	        for(int a = 0; a < stacks.length; a++){
+	        	if(stacks[a] != null)
+	        		list.add(stacks[a].getItemName());
+	        }*/
+			
 			/*for(int i = 0; i < NBTTagHelper.getInt(stack, "craftingSlots"); i++){
 				if(!list.contains(NBTTagHelper.getString(stack, "matrix"+i)) && NBTTagHelper.getString(stack, "matrix"+i) != "-"){
 					list.add("\u00a78"+NBTTagHelper.getString(stack, "matrix"+i));
@@ -62,22 +77,9 @@ public class ItemIdea extends MTItem {
 		}
 	}
 	
-	public IInventory getInventory(EntityPlayer player, ItemStack idea){
-		ItemStack[] stacks;
-		
-		NBTTagList nbttaglist = idea.stackTagCompound.getTagList("Items");
-        stacks = new ItemStack[idea.stackTagCompound.getInteger("invSize")];
-
-        for (int i = 0; i < nbttaglist.tagCount(); ++i){
-            NBTTagCompound comp = (NBTTagCompound)nbttaglist.tagAt(i);
-            int j = comp.getByte("Slot") & 255;
-            if (j >= 0 && j < stacks.length){
-                stacks[j] = ItemStack.loadItemStackFromNBT(comp);
-            }
-        }
-        
-		return new InventoryIdea(stacks, player);
-	}
+	/*public static IInventory getInventory(EntityPlayer player, ItemStack idea){
+		return new InventoryIdea(player, idea);
+	}*/
 
 
 }
