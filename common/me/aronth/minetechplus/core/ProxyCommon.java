@@ -14,6 +14,7 @@ public class ProxyCommon implements IGuiHandler{
 	public void registerHandlers(){
 		GameRegistry.registerCraftingHandler(new IdeaPopper());
 		NetworkRegistry.instance().registerGuiHandler(MineTechPlus.instance, this);
+		
 	}
 
 	@Override

@@ -90,11 +90,12 @@ public class IdeaPopper implements ICraftingHandler{
 	        if(!world.isRemote){
 	        	// spawn the item in world
 	        	EntityItem entItem = new EntityItem(world, player.posX, player.posY, player.posZ, idea);
+	        	entItem.delayBeforeCanPickup = 5;
 	        	world.spawnEntityInWorld(entItem);
+	        	
+	        	// And finally let the player know of the idea
+				player.sendChatToPlayer("-- You just had an idea! --");
 	        }
-			
-			// And finally let the player know of the idea
-			player.sendChatToPlayer("-- You just had an idea! --");
 		}
 	}
 
