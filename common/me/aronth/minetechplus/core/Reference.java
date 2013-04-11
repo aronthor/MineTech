@@ -10,8 +10,10 @@ public class Reference {
 	// Gui IDs !!
 	public static final int GUI_WORKSTATION = 1;
 	public static final int GUI_IDEA = 2;
+	public static final int GUI_BOOKOFWONDERING = 3;
 	
 	// Gui Textures
 	public static final String GUI_TEXTURE_LOCATION = "/mods/minetechplus/textures/gui/";
 	public static final String GUI_IDEA_TEXTURE = GUI_TEXTURE_LOCATION + "idea.png";
+	public static final String GUI_BOOKOFWONDERING_TEXTURE = GUI_TEXTURE_LOCATION+"bookOfWondering.png";
 }

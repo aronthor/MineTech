@@ -95,4 +95,16 @@ public class IdeaManager {
 		return idea;
 	}
 	
+	public ArrayList<IIdea> getUnlockedIdeas(EntityPlayer player){
+		ArrayList<IIdea> unlocked = new ArrayList<IIdea>();
+		
+		NBTTagCompound playerData = player.getEntityData();
+		for(int i = 0; i < unlocked.size(); i++){
+			if(playerData.hasKey(NBT_IDEA_UNLOCKED+i))
+				unlocked.add(this.getIdea(i));
+		}
+		
+		return unlocked;
+	}
+	
 }

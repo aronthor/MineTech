@@ -1,4 +1,4 @@
-package me.aronth.minetechplus.core;
+package me.aronth.minetechplus.core.network;
 
 import net.minecraft.network.INetworkManager;
 import net.minecraft.network.packet.Packet250CustomPayload;

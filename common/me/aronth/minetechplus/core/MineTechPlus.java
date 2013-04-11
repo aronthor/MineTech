@@ -4,6 +4,8 @@ import java.util.logging.Logger;
 
 import net.minecraft.creativetab.CreativeTabs;
 
+import me.aronth.minetechplus.core.network.PacketHandler;
+import me.aronth.minetechplus.core.network.ProxyCommon;
 import me.aronth.minetechplus.ideas.IdeaManager;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
@@ -26,7 +28,7 @@ public class MineTechPlus {
 	@Instance(Reference.MOD_ID)
 	public static MineTechPlus instance;
 	
-	@SidedProxy(clientSide = "me.aronth.minetechplus.core.ProxyClient", serverSide = "me.aronth.minetechplus.core.ProxyCommon")
+	@SidedProxy(clientSide = "me.aronth.minetechplus.core.network.ProxyClient", serverSide = "me.aronth.minetechplus.core.network.ProxyCommon")
 	public static ProxyCommon proxy;
 	
 	// Configuration Handler that handles the config file

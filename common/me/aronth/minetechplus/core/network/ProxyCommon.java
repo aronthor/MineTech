@@ -1,6 +1,9 @@
-package me.aronth.minetechplus.core;
+package me.aronth.minetechplus.core.network;
 
+import me.aronth.minetechplus.client.gui.GuiBookOfWondering;
 import me.aronth.minetechplus.client.gui.GuiIdea;
+import me.aronth.minetechplus.core.MineTechPlus;
+import me.aronth.minetechplus.core.Reference;
 import me.aronth.minetechplus.ideas.IdeaPopper;
 import me.aronth.minetechplus.inventory.ContainerIdea;
 import net.minecraft.entity.player.EntityPlayer;
@@ -28,6 +31,8 @@ public class ProxyCommon implements IGuiHandler{
 	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
 		if(ID == Reference.GUI_IDEA)
 			return new GuiIdea(player);
+		if(ID == Reference.GUI_BOOKOFWONDERING)
+			return new GuiBookOfWondering(player);
 		return null;
 	}
 	
