@@ -3,6 +3,7 @@ package me.aronth.minetechplus.core;
 import java.io.File;
 import java.util.logging.Level;
 
+import me.aronth.minetechplus.MineTechPlus;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.Property;
 

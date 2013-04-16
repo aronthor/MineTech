@@ -1,9 +1,13 @@
-package me.aronth.minetechplus.ideas;
+package me.aronth.minetechplus.core.helpers;
+
+import static me.aronth.minetechplus.lib.Constants.NBT_IDEA;
+import static me.aronth.minetechplus.lib.Constants.NBT_INVENTORY_SIZE;
 
 import java.util.Random;
 
 import me.aronth.minetechplus.core.ItemHandler;
 import me.aronth.minetechplus.core.Reference;
+import me.aronth.minetechplus.ideas.Idea;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -12,9 +16,8 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
 import cpw.mods.fml.common.ICraftingHandler;
-import static me.aronth.minetechplus.lib.Constants.*;
 
-public class IdeaPopper implements ICraftingHandler{
+public class IdeaHandler implements ICraftingHandler{
 	
 	@Override
 	public void onCrafting(EntityPlayer player, ItemStack item,	IInventory craftMatrix) {
@@ -43,7 +46,7 @@ public class IdeaPopper implements ICraftingHandler{
 				inv[i] = crafting.getStackInSlot(i);
 			
 			// get an idea from the items in the grid, if no idea is available, return nothing
-			int thought = IdeaManager.instance.getIdeaFromGrid(inv);
+			/*int thought = IdeaManager.instance.getIdeaFromGrid(inv);
 			
 			if(thought == -1)
 				return;
@@ -53,7 +56,21 @@ public class IdeaPopper implements ICraftingHandler{
 				return;
 			}
 			
-			IdeaManager.instance.unlockIdea(player, thought);
+			IdeaManager.instance.unlockIdea(player, thought);*/
+			
+			Idea thought = Idea.getIdeaFromGrid(inv);
+			
+			if(thought == null){
+			    System.out.println("No idea found witht these materials");
+			    return;
+			}
+			
+			if(IdeaHelper.hasPlayerUnlockedIdea(thought.getIdeaId(), player)){
+			    System.out.println("Already had idea");
+			    return;
+			}
+			
+			IdeaHelper.unlockIdea(thought.getIdeaId(), player);
 			
 			// Save the crafting grid in the idea item
 			NBTTagCompound compound = new NBTTagCompound();
@@ -70,7 +87,7 @@ public class IdeaPopper implements ICraftingHandler{
 
 	        // Save the information too the compound
 	        compound.setTag("Items", craftGrid);
-	        compound.setInteger(NBT_IDEA, thought);
+	        compound.setInteger(NBT_IDEA, thought.getIdeaId());
 	        compound.setInteger(NBT_INVENTORY_SIZE, crafting.getSizeInventory());
 			
 	        NBTTagList result = new NBTTagList();

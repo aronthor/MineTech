@@ -1,6 +1,6 @@
 package me.aronth.minetechplus.items;
 
-import me.aronth.minetechplus.core.MineTechPlus;
+import me.aronth.minetechplus.MineTechPlus;
 import me.aronth.minetechplus.core.Reference;
 import me.aronth.minetechplus.core.helpers.NBTTagHelper;
 import net.minecraft.entity.player.EntityPlayer;

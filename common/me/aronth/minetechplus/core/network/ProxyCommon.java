@@ -1,10 +1,10 @@
 package me.aronth.minetechplus.core.network;
 
+import me.aronth.minetechplus.MineTechPlus;
 import me.aronth.minetechplus.client.gui.GuiBookOfWondering;
 import me.aronth.minetechplus.client.gui.GuiIdea;
-import me.aronth.minetechplus.core.MineTechPlus;
 import me.aronth.minetechplus.core.Reference;
-import me.aronth.minetechplus.ideas.IdeaPopper;
+import me.aronth.minetechplus.core.helpers.IdeaHandler;
 import me.aronth.minetechplus.inventory.ContainerIdea;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
@@ -15,7 +15,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 public class ProxyCommon implements IGuiHandler{
 	
 	public void registerHandlers(){
-		GameRegistry.registerCraftingHandler(new IdeaPopper());
+		GameRegistry.registerCraftingHandler(new IdeaHandler());
 		NetworkRegistry.instance().registerGuiHandler(MineTechPlus.instance, this);
 		
 	}

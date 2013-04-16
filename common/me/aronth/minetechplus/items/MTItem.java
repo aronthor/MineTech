@@ -14,8 +14,8 @@ public class MTItem extends Item {
 
 	@Override
     @SideOnly(Side.CLIENT)
-    public void updateIcons(IconRegister iconRegister) {
-		iconIndex = iconRegister.registerIcon(Reference.MOD_ID.toLowerCase() + ":" + this.getUnlocalizedName().substring(this.getUnlocalizedName().indexOf(".") + 1));
+    public void registerIcons(IconRegister iconRegister) {
+		itemIcon = iconRegister.registerIcon(Reference.MOD_ID.toLowerCase() + ":" + this.getUnlocalizedName().substring(this.getUnlocalizedName().indexOf(".") + 1));
     }
 	
 }

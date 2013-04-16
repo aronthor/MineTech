@@ -1,7 +1,7 @@
 package me.aronth.minetechplus.blocks;
 
+import me.aronth.minetechplus.MineTechPlus;
 import me.aronth.minetechplus.core.ConfigHandler;
-import me.aronth.minetechplus.core.MineTechPlus;
 import me.aronth.minetechplus.core.Reference;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;

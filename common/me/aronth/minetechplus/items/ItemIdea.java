@@ -2,10 +2,9 @@ package me.aronth.minetechplus.items;
 
 import java.util.List;
 
-import me.aronth.minetechplus.core.MineTechPlus;
+import me.aronth.minetechplus.MineTechPlus;
 import me.aronth.minetechplus.core.Reference;
-import me.aronth.minetechplus.core.helpers.NBTTagHelper;
-import me.aronth.minetechplus.ideas.IdeaManager;
+import me.aronth.minetechplus.ideas.Idea;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -45,41 +44,24 @@ public class ItemIdea extends MTItem {
 				list.add("\u00a7oCrafted: \u00a78"+resultItem.getDisplayName());
 			}
 			
-			/*ItemStack[] stacks;
-			
-			NBTTagList nbttaglist = stack.stackTagCompound.getTagList("Items");
-	        stacks = new ItemStack[stack.stackTagCompound.getInteger("invSize")];
-
-	        for (int i = 0; i < nbttaglist.tagCount(); ++i){
-	            NBTTagCompound comp2 = (NBTTagCompound)nbttaglist.tagAt(i);
-	            int j = comp2.getByte("Slot") & 255;
-	            if (j >= 0 && j < stacks.length){
-	                stacks[j] = ItemStack.loadItemStackFromNBT(comp2);
-	            }
-	        }
-	        
-	        for(int a = 0; a < stacks.length; a++){
-	        	if(stacks[a] != null)
-	        		list.add(stacks[a].getItemName());
-	        }*/
-			
-			/*for(int i = 0; i < NBTTagHelper.getInt(stack, "craftingSlots"); i++){
-				if(!list.contains(NBTTagHelper.getString(stack, "matrix"+i)) && NBTTagHelper.getString(stack, "matrix"+i) != "-"){
-					list.add("\u00a78"+NBTTagHelper.getString(stack, "matrix"+i));
-				}
+			/*if(NBTTagHelper.hasTag(stack, "thought") && NBTTagHelper.getInt(stack, "thought") >= 0 && Reference.DEBUG){
+				//list.add(IdeaManager.instance.ideas.get(NBTTagHelper.getInt(stack, "thought")).getName());
+			    //list.add(Idea.ideaList[stack.stackTagCompound.getInteger("thought")+1].getName());
+			    Idea i = Idea.instance.ideaList[stack.stackTagCompound.getInteger("thought")];
+			    if(i == null)
+			        list.add("Unknown");
+			    else
+			        list.add(i.getName());
 			}*/
 			
-			if(NBTTagHelper.hasTag(stack, "thought") && NBTTagHelper.getInt(stack, "thought") >= 0 && Reference.DEBUG){
-				list.add(IdeaManager.instance.ideas.get(NBTTagHelper.getInt(stack, "thought")).getName());
+			if(stack.stackTagCompound.hasKey("idea")){
+			    Idea idea = Idea.getIdeaById(stack.stackTagCompound.getInteger("idea"));//Idea.instance.getIdea(stack.stackTagCompound.getInteger("idea"));
+			    if(idea != null)
+			        list.add(idea.getName());
 			}
+			
 		}catch(NullPointerException e){
 			System.out.println(e.getMessage());
 		}
 	}
-	
-	/*public static IInventory getInventory(EntityPlayer player, ItemStack idea){
-		return new InventoryIdea(player, idea);
-	}*/
-
-
 }

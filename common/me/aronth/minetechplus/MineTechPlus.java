@@ -1,24 +1,32 @@
-package me.aronth.minetechplus.core;
+package me.aronth.minetechplus;
 
 import java.util.logging.Logger;
 
-import net.minecraft.creativetab.CreativeTabs;
-
+import me.aronth.minetechplus.core.BlockHandler;
+import me.aronth.minetechplus.core.ConfigHandler;
+import me.aronth.minetechplus.core.CraftingHandler;
+import me.aronth.minetechplus.core.CreativeTabMineTech;
+import me.aronth.minetechplus.core.ItemHandler;
+import me.aronth.minetechplus.core.Reference;
+import me.aronth.minetechplus.core.helpers.PlayerTracker;
 import me.aronth.minetechplus.core.network.PacketHandler;
 import me.aronth.minetechplus.core.network.ProxyCommon;
-import me.aronth.minetechplus.ideas.IdeaManager;
+import net.minecraft.creativetab.CreativeTabs;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.Instance;
+import cpw.mods.fml.common.Mod.PostInit;
 import cpw.mods.fml.common.Mod.PreInit;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
+import cpw.mods.fml.common.registry.GameRegistry;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version=Reference.VERSION)
-@NetworkMod(clientSideRequired = true, serverSideRequired = true, channels = {"minetechplus"}, packetHandler = PacketHandler.class)
+@NetworkMod(clientSideRequired = true, serverSideRequired = true, channels = {Reference.MOD_ID}, packetHandler = PacketHandler.class)
 public class MineTechPlus {
 	
 	// A logger too log the mod.. dont know why i need it right now
@@ -42,8 +50,6 @@ public class MineTechPlus {
 	public ItemHandler items;
 	public CraftingHandler crafting;
 	
-	// The Idea Manager.. for managing all'em ideas
-	public IdeaManager ideaManager = new IdeaManager();
 	
 	@PreInit
 	public void preInit(FMLPreInitializationEvent e){
@@ -59,4 +65,8 @@ public class MineTechPlus {
 		proxy.registerHandlers();
 	}
 	
+	@PostInit
+	public void postInit(FMLPostInitializationEvent e){
+	    GameRegistry.registerPlayerTracker(new PlayerTracker());
+	}
 }

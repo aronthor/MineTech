@@ -1,14 +1,13 @@
 package me.aronth.minetechplus.inventory;
 
-import me.aronth.minetechplus.ideas.IIdea;
-import me.aronth.minetechplus.ideas.IdeaManager;
+import static me.aronth.minetechplus.lib.Constants.NBT_IDEA;
+import me.aronth.minetechplus.ideas.Idea;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import static me.aronth.minetechplus.lib.Constants.*;
 
 public class ContainerIdea extends Container{
 
@@ -52,7 +51,10 @@ public class ContainerIdea extends Container{
 			}
 		}
 		
-		IIdea thought = IdeaManager.instance.getIdea(ideaStack.stackTagCompound.getInteger(NBT_IDEA));
+		//IIdea thought = IdeaManager.instance.getIdea(ideaStack.stackTagCompound.getInteger(NBT_IDEA));
+		//Idea thought = Idea.instance.ideaList[ideaStack.stackTagCompound.getInteger(NBT_IDEA)];
+		
+		Idea thought = Idea.getIdeaById(ideaStack.stackTagCompound.getInteger(NBT_IDEA));
 		
 		this.ideaName = thought.getName();
 		this.ideaDescr = thought.getDescription();
