@@ -2,6 +2,8 @@ package me.aronth.minetechplus.ideas;
 
 import java.util.ArrayList;
 
+import cpw.mods.fml.common.registry.LanguageRegistry;
+
 import net.minecraft.item.ItemStack;
 
 public class Idea {
@@ -10,7 +12,8 @@ public class Idea {
     public static final Idea[] ideaList = new Idea[256];
     
     // All em' ideas initialized
-    public static final Idea dualFurnace = new IdeaDualFurnace(1).setName("DualFurnace");
+    public static final Idea dualFurnace = new IdeaDualFurnace(1).setName("dualFurnace");
+    public static final Idea superContainer = new IdeaSuperContainer(2).setName("superContainer");
     
     // Simple fields for idea
     public int ideaIndex;
@@ -52,6 +55,8 @@ public class Idea {
     }
     
     public boolean areSameMaterials(ItemStack stack1, ItemStack stack2){
+        if(stack1 == null || stack2 == null)
+            return false;
         
         if(stack1.itemID == stack2.itemID && stack1.getItemDamage() == stack2.getItemDamage())
             return true;
@@ -69,8 +74,13 @@ public class Idea {
         return this;
     }
     
+    public String getUnlocalizedName(){
+        return "idea."+ideaName+".name";
+    }
+    
     public String getName(){
-        return ideaName;
+        return LanguageRegistry.instance().getStringLocalization("idea."+ideaName+".name");
+        //return ideaName;
     }
     
     public int getIdeaId(){
@@ -78,7 +88,8 @@ public class Idea {
     }
     
     public String getDescription() {
-        return "-";
+        return LanguageRegistry.instance().getStringLocalization("idea."+ideaName+".descr");
+        //return "-";
     }
     
     // Method for calling all ideas, just for debugging

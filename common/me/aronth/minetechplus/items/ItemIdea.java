@@ -44,24 +44,15 @@ public class ItemIdea extends MTItem {
 				list.add("\u00a7oCrafted: \u00a78"+resultItem.getDisplayName());
 			}
 			
-			/*if(NBTTagHelper.hasTag(stack, "thought") && NBTTagHelper.getInt(stack, "thought") >= 0 && Reference.DEBUG){
-				//list.add(IdeaManager.instance.ideas.get(NBTTagHelper.getInt(stack, "thought")).getName());
-			    //list.add(Idea.ideaList[stack.stackTagCompound.getInteger("thought")+1].getName());
-			    Idea i = Idea.instance.ideaList[stack.stackTagCompound.getInteger("thought")];
-			    if(i == null)
-			        list.add("Unknown");
-			    else
-			        list.add(i.getName());
-			}*/
-			
 			if(stack.stackTagCompound.hasKey("idea")){
-			    Idea idea = Idea.getIdeaById(stack.stackTagCompound.getInteger("idea"));//Idea.instance.getIdea(stack.stackTagCompound.getInteger("idea"));
+			    Idea idea = Idea.getIdeaById(stack.stackTagCompound.getInteger("idea"));
 			    if(idea != null)
 			        list.add(idea.getName());
 			}
 			
 		}catch(NullPointerException e){
-			System.out.println(e.getMessage());
+			//System.out.println(e.getMessage());
+		    // Do nothing !! There seems that this idea stack does not have any data
 		}
 	}
 }

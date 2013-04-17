@@ -9,6 +9,7 @@ public class IdeaDualFurnace extends Idea{
     public IdeaDualFurnace(int id){
         super(id);
         addMaterial(new ItemStack(Block.cobblestone));
+        addMaterial(new ItemStack(Block.furnaceIdle));
     }
 
 }

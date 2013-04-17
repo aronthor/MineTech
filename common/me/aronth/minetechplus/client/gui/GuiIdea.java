@@ -18,9 +18,10 @@ public class GuiIdea extends GuiContainer{
     protected void drawGuiContainerForegroundLayer(int param1, int param2) {
             fontRenderer.drawString("Idea", 8, 6, 4210752);
             fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, 4210752);
-            
-            fontRenderer.drawString(((ContainerIdea)this.inventorySlots).getIdeaName(), 105, 22, 4210752);
-            fontRenderer.drawSplitString(((ContainerIdea)this.inventorySlots).getIdeaDescription(), 70, 41, 95, 4210752);
+            fontRenderer.setUnicodeFlag(true);
+            fontRenderer.drawString(((ContainerIdea)this.inventorySlots).getIdeaName(), 105, 20, 4210752);
+            fontRenderer.drawSplitString(((ContainerIdea)this.inventorySlots).getIdeaDescription(), 70, 39, 95, 4210752);
+            fontRenderer.setUnicodeFlag(false);
     }
 	
 	@Override

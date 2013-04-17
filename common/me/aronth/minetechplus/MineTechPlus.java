@@ -62,6 +62,7 @@ public class MineTechPlus {
 		blocks = new BlockHandler(config);
 		crafting = new CraftingHandler();
 		
+		proxy.addNames();
 		proxy.registerHandlers();
 	}
 	

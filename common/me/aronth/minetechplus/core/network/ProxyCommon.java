@@ -11,6 +11,7 @@ import net.minecraft.world.World;
 import cpw.mods.fml.common.network.IGuiHandler;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.common.registry.LanguageRegistry;
 
 public class ProxyCommon implements IGuiHandler{
 	
@@ -20,6 +21,21 @@ public class ProxyCommon implements IGuiHandler{
 		
 	}
 
+	// Load all language files
+	public void addNames(){
+	    String langLocation = "/mods/minetechplus/lang/";
+	    String[] files = { "en_US" };
+	    
+	    for(String file : files){
+	        try{
+	            LanguageRegistry.instance().loadLocalization(langLocation + file + ".xml", file, true);
+	        }catch(Exception e){
+	            e.printStackTrace();
+	        }
+	    }
+	    
+	}
+	
 	@Override
 	public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
 		if(ID == Reference.GUI_IDEA)
