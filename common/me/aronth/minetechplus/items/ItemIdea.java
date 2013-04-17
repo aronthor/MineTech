@@ -42,7 +42,7 @@ public class ItemIdea extends MTItem {
 			if(comp.hasKey("Result")){
 				NBTTagCompound res = (NBTTagCompound) comp.getTagList("Result").tagAt(0);
 				resultItem = ItemStack.loadItemStackFromNBT(res);
-				list.add(LanguageRegistry.instance().getStringLocalization("idea.info.crafted")+resultItem.getDisplayName());
+				list.add("\u00a7o" + LanguageRegistry.instance().getStringLocalization("idea.info.crafted") + "\u00a78" + resultItem.getDisplayName());
 			}
 			
 			if(stack.stackTagCompound.hasKey("idea")){
