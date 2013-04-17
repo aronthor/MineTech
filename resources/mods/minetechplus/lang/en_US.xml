@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties version = "1.0">
+	<entry key="idea.info.crafted">\u00a7oCrafted: \u00a78</entry>
 	<entry key="idea.dualFurnace.name">Dual Furnace</entry>
 	<entry key="idea.dualFurnace.descr">Smelting two items at a time for the cost of 1.5 items</entry>
 	<entry key="idea.superContainer.name">Super Container</entry>

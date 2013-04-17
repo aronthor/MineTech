@@ -9,6 +9,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
+import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -41,7 +42,7 @@ public class ItemIdea extends MTItem {
 			if(comp.hasKey("Result")){
 				NBTTagCompound res = (NBTTagCompound) comp.getTagList("Result").tagAt(0);
 				resultItem = ItemStack.loadItemStackFromNBT(res);
-				list.add("\u00a7oCrafted: \u00a78"+resultItem.getDisplayName());
+				list.add(LanguageRegistry.instance().getStringLocalization("idea.info.crafted")+resultItem.getDisplayName());
 			}
 			
 			if(stack.stackTagCompound.hasKey("idea")){
