@@ -10,7 +10,7 @@ public class ItemHandler {
 	private ConfigHandler config;
 	
 	// Empty fields for holding items
-	public static Item idea, bookOfWondering;
+	public static Item idea, bookOfWondering, pencil;
 	
 	public ItemHandler(ConfigHandler handler){
 		config = handler;
@@ -22,6 +22,7 @@ public class ItemHandler {
 	public void initItems(){
 		idea = new ItemIdea(config.IDIdeaItem);
 		bookOfWondering = new ItemBookWondering(config.IDWonderingBook);
+		pencil = new ItemPencil(config.IDPencil);
 		
 		addLanguage();
 	}
@@ -29,5 +30,6 @@ public class ItemHandler {
 	public void addLanguage(){
 		LanguageRegistry.addName(idea, "Idea");
 		LanguageRegistry.addName(bookOfWondering, "Book Of Wondering");
+		LanguageRegistry.addName(pencil, "Pencil");
 	}
 }

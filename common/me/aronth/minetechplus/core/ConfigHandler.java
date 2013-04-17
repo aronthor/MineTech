@@ -12,7 +12,7 @@ public class ConfigHandler {
 	// Blocks
 	public int IDOreBlock, IDWorkstation;
 	// Items
-	public int IDIdeaItem, IDWonderingBook;
+	public int IDIdeaItem, IDWonderingBook, IDPencil;
 	// Misc
 	public int ideaChance;
 	public static int renderId;
@@ -47,6 +47,10 @@ public class ConfigHandler {
 			Property itemBookOfWondering = conf.getItem("BookOfWondering", 4001);
 			itemBookOfWondering.comment = "The Book of Wondering, for you too store your ideas";
 			IDWonderingBook = itemBookOfWondering.getInt();
+			
+			Property itemPencil = conf.getItem("Pencil", 4002);
+			itemPencil.comment = "Pencil is an idea you have for editing signs";
+            IDPencil = itemPencil.getInt();
 			
 		}catch(RuntimeException e){
 			MineTechPlus.instance.log.log(Level.INFO, "Config file not found, creating new one");

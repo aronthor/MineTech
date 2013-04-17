@@ -4,7 +4,6 @@ import static me.aronth.minetechplus.lib.Constants.NBT_IDEA;
 import me.aronth.minetechplus.ideas.Idea;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
-import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -64,7 +63,7 @@ public class ContainerIdea extends Container{
 		
 		addSlotToContainer(new SlotDumb(86, 17, resultItem));
 		
-		for (int i = 0; i < 3; i++) {
+		/*for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 9; j++) {
 				addSlotToContainer(new Slot(me.inventory, j + i * 9 + 9,
 						8 + j * 18, 84 + i * 18));
@@ -73,7 +72,7 @@ public class ContainerIdea extends Container{
 
 		for (int i = 0; i < 9; i++) {
 			addSlotToContainer(new Slot(me.inventory, i, 8 + i * 18, 142));
-		}
+		}*/
 	}
 	
 	public String getIdeaName(){

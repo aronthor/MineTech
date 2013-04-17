@@ -45,6 +45,16 @@ public class ItemIdea extends MTItem {
 				list.add("\u00a7o" + LanguageRegistry.instance().getStringLocalization("idea.info.crafted") + "\u00a78" + resultItem.getDisplayName());
 			}
 			
+			if(comp.hasKey("refined")){
+			    if(comp.getInteger("refined") < 10)
+			        list.add("\u00a7o" + LanguageRegistry.instance().getStringLocalization("idea.info.refined") + "\u00a78" + comp.getInteger("refined"));
+			    else
+			        list.add("\u00a78" + LanguageRegistry.instance().getStringLocalization("idea.info.refinedComplete"));
+			}else{
+			    comp.setInteger("refined", 0);
+			    list.add("\u00a7o" + LanguageRegistry.instance().getStringLocalization("idea.info.refined") + "\u00a78 0");
+			}
+			
 			if(stack.stackTagCompound.hasKey("idea")){
 			    Idea idea = Idea.getIdeaById(stack.stackTagCompound.getInteger("idea"));
 			    if(idea != null)
