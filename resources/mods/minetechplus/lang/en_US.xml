@@ -10,4 +10,6 @@
 	<entry key="idea.superContainer.descr">Containing more items in a single chest</entry>
 	<entry key="idea.pencil.name">Pencil</entry>
 	<entry key="idea.pencil.descr">Edit signs !!</entry>
+	<entry key="idea.minersHelmet.name">Miners Helmet</entry>
+	<entry key="idea.minersHelmet.descr">Bit of damage resistance but light emitting, who needs torches now, huh ?</entry>
 </properties>

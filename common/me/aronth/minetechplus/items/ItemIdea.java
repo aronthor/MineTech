@@ -23,8 +23,8 @@ public class ItemIdea extends MTItem {
 	}
 	
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player){
-		stack.stackTagCompound.setBoolean("open", true);
-		player.openGui(MineTechPlus.instance, Reference.GUI_IDEA, world, (int)player.posX, (int)player.posY, (int)player.posZ);
+	    if(!player.isSneaking())
+	        player.openGui(MineTechPlus.instance, Reference.GUI_IDEA, world, (int)player.posX, (int)player.posY, (int)player.posZ);
 		return stack;
 	}
 	
@@ -46,7 +46,7 @@ public class ItemIdea extends MTItem {
 			}
 			
 			if(comp.hasKey("refined")){
-			    if(comp.getInteger("refined") < 10)
+			    if(comp.getInteger("refined") < 3)
 			        list.add("\u00a7o" + LanguageRegistry.instance().getStringLocalization("idea.info.refined") + "\u00a78" + comp.getInteger("refined"));
 			    else
 			        list.add("\u00a78" + LanguageRegistry.instance().getStringLocalization("idea.info.refinedComplete"));

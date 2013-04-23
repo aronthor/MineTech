@@ -15,6 +15,7 @@ public class Idea {
     public static final Idea dualFurnace = new IdeaDualFurnace(1).setName("dualFurnace");
     public static final Idea superContainer = new IdeaSuperContainer(2).setName("superContainer");
     public static final Idea pencil = new IdeaPencil(3).setName("pencil");
+    public static final Idea minersHelmet = new IdeaMinersHelmet(4).setName("minersHelmet");
     
     // Simple fields for idea
     public int ideaIndex;

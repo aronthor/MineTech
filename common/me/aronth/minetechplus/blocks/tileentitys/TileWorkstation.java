@@ -1,14 +1,19 @@
 package me.aronth.minetechplus.blocks.tileentitys;
 
+import me.aronth.minetechplus.core.Reference;
+import me.aronth.minetechplus.core.helpers.IdeaHelper;
 import me.aronth.minetechplus.items.ItemIdea;
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 
 public class TileWorkstation extends TileEntity implements IInventory{
 
-	private ItemStack[] stack = new ItemStack[1];
+	private ItemStack[] stack = new ItemStack[2];
+	private int bookcases = 0;
 	
 	@Override
 	public int getSizeInventory() {
@@ -91,6 +96,45 @@ public class TileWorkstation extends TileEntity implements IInventory{
 		return false;
 	}
 	
+	public int findBookcases(){
+	    bookcases = 0;
+	    for(int y = 0; y < 2;y++){
+    	    for(int x = 0; x < 5; x++){
+    	        for(int z = 0; z < 5; z++){
+    	            if(worldObj.getBlockId(xCoord+x-2, yCoord+y, zCoord+z-2) == Block.bookShelf.blockID)
+    	                this.bookcases++;
+    	        }
+    	    }
+	    }
+	    if(Reference.DEBUG)System.out.println("Found " + this.bookcases + " around");
+	    return bookcases;
+	}
 	
+	public boolean hasLevels(EntityPlayer me){
+	    int levels = IdeaHelper.getRequiredLevels(findBookcases(), me);
+	    if(me.experienceLevel >= levels)
+	        return true;
+	    return false;
+	}
+
+    public void refineIdea(EntityPlayer player) {
+        if(hasLevels(player)){
+            if(this.stack[0] != null){
+                if(stack[0].getItem() instanceof ItemIdea){
+                    NBTTagCompound tags = stack[0].stackTagCompound;
+                    if(tags.hasKey("refined")){
+                        if(tags.getInteger("refined") < 3){
+                            tags.setInteger("refined", tags.getInteger("refined")+1);
+                            stack[1] = stack[0];
+                            stack[0] = null;
+                            player.experienceLevel -= IdeaHelper.getRequiredLevels(findBookcases(), player);
+                        }
+                    }else{
+                        tags.setInteger("refined", 1);
+                    }
+                }
+            }
+        }
+    }
 	
 }

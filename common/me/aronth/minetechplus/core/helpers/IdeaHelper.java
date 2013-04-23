@@ -1,5 +1,6 @@
 package me.aronth.minetechplus.core.helpers;
 
+import me.aronth.minetechplus.MineTechPlus;
 import me.aronth.minetechplus.core.Reference;
 import me.aronth.minetechplus.ideas.Idea;
 import net.minecraft.entity.player.EntityPlayer;
@@ -38,6 +39,28 @@ public class IdeaHelper {
     
     public static Idea getIdeaFromGrid(ItemStack[] grid){
         return Idea.getIdeaFromGrid(grid);
+    }
+
+    public static void forgetAllIdeas(String user) {
+        EntityPlayer player = MineTechPlus.instance.playerTracker.getPlayerByUsername(user);
+        if(player != null){
+            initPlayer(player);
+            NBTTagCompound comp = getPlayerData(player);
+            for(int i = 0; i<Idea.ideaList.length; i++){
+                comp.removeTag(NBT_IDEA+i);
+            }
+            System.out.println(user + " forgot ideas");
+        }else{
+            System.out.println("Player is null, name:"+user);
+        }
+    }
+    
+    public static int getRequiredLevels(int bookcases, EntityPlayer player){
+        int levels = 10;
+        levels = levels - Math.round(((bookcases+1) / 5));
+        if(player.capabilities.isCreativeMode)
+            levels = 0;
+        return levels;
     }
     
 }

@@ -16,4 +16,5 @@ public class Reference {
 	public static final String GUI_TEXTURE_LOCATION = "/mods/minetechplus/textures/gui/";
 	public static final String GUI_IDEA_TEXTURE = GUI_TEXTURE_LOCATION + "idea.png";
 	public static final String GUI_BOOKOFWONDERING_TEXTURE = GUI_TEXTURE_LOCATION+"bookOfWondering.png";
+    public static final String GUI_REFINEIDEA = GUI_TEXTURE_LOCATION + "refineIdea.png";
 }

@@ -2,6 +2,7 @@ package me.aronth.minetechplus.inventory;
 
 import static me.aronth.minetechplus.lib.Constants.NBT_IDEA;
 import me.aronth.minetechplus.ideas.Idea;
+import me.aronth.minetechplus.lib.Constants;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;
@@ -14,20 +15,7 @@ public class ContainerIdea extends Container{
 	private String ideaName, ideaDescr;
 	
 	public ContainerIdea(EntityPlayer me){
-		ItemStack ideaStack = null;
-		
-		/*for(ItemStack stack : me.inventory.mainInventory){
-			if(stack != null && stack.getItem() instanceof ItemIdea){
-				if(stack.stackTagCompound.hasKey("open")){
-					stack.stackTagCompound.removeTag("open");
-					ideaStack = stack;
-					//idea = ItemIdea.getInventory(me, stack);
-					if(Reference.DEBUG)System.out.println("Found Inventory");
-				}
-			}
-		}*/
-		
-		ideaStack = me.getCurrentEquippedItem();
+		ItemStack ideaStack = me.getCurrentEquippedItem();
 		
 		ItemStack[] stacks;
 		
@@ -42,16 +30,28 @@ public class ContainerIdea extends Container{
             }
         }
         
-        int index = 0;
-		for(int a = 0; a < 3; a++){
-			for(int b = 0; b < 3; b++){
-				addSlotToContainer(new SlotDumb(8 + b * 18, 17 + a * 18, stacks[index]));
-				++index;
-			}
-		}
-		
-		//IIdea thought = IdeaManager.instance.getIdea(ideaStack.stackTagCompound.getInteger(NBT_IDEA));
-		//Idea thought = Idea.instance.ideaList[ideaStack.stackTagCompound.getInteger(NBT_IDEA)];
+        if(ideaStack.stackTagCompound.hasKey(Constants.NBT_INVENTORY_SIZE)){
+            int invSize = ideaStack.stackTagCompound.getInteger(Constants.NBT_INVENTORY_SIZE);
+            if(invSize == 9){
+                int index = 0;
+                for(int a = 0; a < 3; a++){
+                    for(int b = 0; b < 3; b++){
+                        addSlotToContainer(new SlotDumb(8 + b * 18, 17 + a * 18, stacks[index]));
+                        ++index;
+                    }
+                }
+            }else if(invSize == 4){
+                int index = 0;
+                for(int a = 0; a < 2; a++){
+                    for(int b = 0; b < 2; b++){
+                        addSlotToContainer(new SlotDumb(8 + b * 18, 17 + a * 18, stacks[index]));
+                        ++index;
+                    }
+                }
+            }
+        }else{
+            System.out.println("Errmmm.. Invalid idea");
+        }
 		
 		Idea thought = Idea.getIdeaById(ideaStack.stackTagCompound.getInteger(NBT_IDEA));
 		
@@ -62,17 +62,6 @@ public class ContainerIdea extends Container{
 		ItemStack resultItem = ItemStack.loadItemStackFromNBT(res);
 		
 		addSlotToContainer(new SlotDumb(86, 17, resultItem));
-		
-		/*for (int i = 0; i < 3; i++) {
-			for (int j = 0; j < 9; j++) {
-				addSlotToContainer(new Slot(me.inventory, j + i * 9 + 9,
-						8 + j * 18, 84 + i * 18));
-			}
-		}
-
-		for (int i = 0; i < 9; i++) {
-			addSlotToContainer(new Slot(me.inventory, i, 8 + i * 18, 142));
-		}*/
 	}
 	
 	public String getIdeaName(){

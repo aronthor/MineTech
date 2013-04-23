@@ -1,0 +1,17 @@
+[
+{
+  "modid": "MineTechPlus",
+  "name": "MineTech+",
+  "description": "Mod to advance minecraft technology",
+  "version": "pre1",
+  "mcversion": "1.5.1",
+  "logoFile": "",
+  "url": "http://aronth.me/",
+  "updateUrl": "",
+  "authors": ["SpeakersMind"],
+  "credits": "Made by SpeakersMind",
+  "parent": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

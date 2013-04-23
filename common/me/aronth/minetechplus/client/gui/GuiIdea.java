@@ -4,7 +4,6 @@ import me.aronth.minetechplus.core.Reference;
 import me.aronth.minetechplus.inventory.ContainerIdea;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.StatCollector;
 
 import org.lwjgl.opengl.GL11;
 
@@ -16,12 +15,10 @@ public class GuiIdea extends GuiContainer{
 
 	@Override
     protected void drawGuiContainerForegroundLayer(int param1, int param2) {
-            fontRenderer.drawString("Idea", 8, 6, 4210752);
-            fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, 4210752);
-            fontRenderer.setUnicodeFlag(true);
-            fontRenderer.drawString(((ContainerIdea)this.inventorySlots).getIdeaName(), 105, 20, 4210752);
-            fontRenderer.drawSplitString(((ContainerIdea)this.inventorySlots).getIdeaDescription(), 70, 39, 95, 4210752);
-            fontRenderer.setUnicodeFlag(false);
+	    fontRenderer.setUnicodeFlag(true);
+        fontRenderer.drawString(((ContainerIdea)this.inventorySlots).getIdeaName(), 8, 6, 4210752);
+        fontRenderer.drawSplitString(((ContainerIdea)this.inventorySlots).getIdeaDescription(), 8, 75, 165, 4210752);
+        fontRenderer.setUnicodeFlag(false);
     }
 	
 	@Override
