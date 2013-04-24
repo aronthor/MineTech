@@ -50,6 +50,7 @@ public class IdeaHelper {
                 comp.removeTag(NBT_IDEA+i);
             }
             System.out.println(user + " forgot ideas");
+            player.sendChatToPlayer("You forgot all your ideas");
         }else{
             System.out.println("Player is null, name:"+user);
         }
