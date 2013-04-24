@@ -2,9 +2,10 @@ package me.aronth.minetechplus.ideas;
 
 import java.util.ArrayList;
 
-import cpw.mods.fml.common.registry.LanguageRegistry;
-
+import net.minecraft.block.Block;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import cpw.mods.fml.common.registry.LanguageRegistry;
 
 public class Idea {
     
@@ -21,6 +22,7 @@ public class Idea {
     public int ideaIndex;
     public String ideaName;
     private ArrayList<ItemStack> materials = new ArrayList<ItemStack>();
+    private Object contentOfIdea;
     
     public Idea(int id){
         if(ideaList[id] != null){
@@ -46,6 +48,20 @@ public class Idea {
                         return ideas;
         }
         return null;
+    }
+    
+    public void setContent(Object obj){
+        if(obj instanceof Block)
+            this.contentOfIdea = obj;
+        if(obj instanceof Item)
+            this.contentOfIdea = obj;
+        if(obj instanceof ItemStack)
+            this.contentOfIdea = obj;
+        System.out.println("Invalid Content");
+    }
+    
+    public Object getContent(){
+        return contentOfIdea;
     }
     
     public boolean usesMaterial(ItemStack stack){

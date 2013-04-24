@@ -1,8 +1,13 @@
 package me.aronth.minetechplus.client.gui;
 
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+
 import me.aronth.minetechplus.blocks.tileentitys.TileWorkstation;
 import me.aronth.minetechplus.core.Reference;
 import me.aronth.minetechplus.core.helpers.IdeaHelper;
+import me.aronth.minetechplus.core.helpers.PacketHelper;
 import me.aronth.minetechplus.inventory.ContainerWorkstation;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -32,16 +37,22 @@ public class GuiRefineIdea extends GuiContainer {
     protected void actionPerformed(GuiButton par1GuiButton) {
         int btn = par1GuiButton.id;
         if(btn == 1){
-            /*ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
             DataOutputStream dos = new DataOutputStream(bos);
             try {
                 dos.writeInt(2);
                 dos.writeUTF(this.mc.thePlayer.username);
-                dos.writeInt(IdeaHelper.getRequiredLevels(station.findBookcases(), this.mc.thePlayer));
+                dos.writeInt(this.station.xCoord);
+                dos.writeInt(this.station.yCoord);
+                dos.writeInt(this.station.zCoord);
+                PacketHelper.sendPacketToServer(bos);
             } catch (IOException e) {
                 e.printStackTrace();
-            }*/
-            this.station.refineIdea(mc.thePlayer);
+            }
+            //this.station.refineIdea(mc.thePlayer);
+            /*PacketMineTech packet = new PacketRefineIdea(this.mc.thePlayer.username);
+            packet.send();*/
+            
         }
     }
     

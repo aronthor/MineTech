@@ -3,9 +3,15 @@ package me.aronth.minetechplus.core.network;
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 
+import me.aronth.minetechplus.MineTechPlus;
+import me.aronth.minetechplus.blocks.tileentitys.TileWorkstation;
 import me.aronth.minetechplus.core.Reference;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.INetworkManager;
 import net.minecraft.network.packet.Packet250CustomPayload;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
+import net.minecraftforge.common.DimensionManager;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.network.IPacketHandler;
 import cpw.mods.fml.common.network.Player;
@@ -50,6 +56,24 @@ public class PacketHandler implements IPacketHandler {
                     e.printStackTrace();
                 }
                 PacketHelper.sendPacketToPlayer(bos, player);*/
+            }
+            
+            if(packetId == 2){ // Idea refined in workstation
+                //if(FMLCommonHandler.instance().getEffectiveSide().isServer())System.out.println("We are on a server");
+                //World w = FMLClientHandler.instance().getClient().theWorld;
+                //if(w != null){
+                    String username = dis.readUTF();
+                    EntityPlayer me = MineTechPlus.instance.playerTracker.getPlayerByUsername(username);
+                    int x = dis.readInt();
+                    int y = dis.readInt();
+                    int z = dis.readInt();
+                    World w = DimensionManager.getWorld(me.dimension);
+                    TileEntity tile = w.getBlockTileEntity(x, y, z);
+                    if(tile instanceof TileWorkstation){
+                        ((TileWorkstation) tile).refineIdea(me);
+                    }
+                    if(Reference.DEBUG)System.out.println("Idea Refined !!");
+                //}
             }
             
         } catch (Exception e) {
