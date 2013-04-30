@@ -1,6 +1,5 @@
 package me.aronth.minetechplus.blocks.tileentitys;
 
-import me.aronth.minetechplus.core.Reference;
 import me.aronth.minetechplus.core.helpers.IdeaHelper;
 import me.aronth.minetechplus.items.ItemIdea;
 import net.minecraft.block.Block;
@@ -14,6 +13,19 @@ public class TileWorkstation extends TileEntity implements IInventory{
 
 	private ItemStack[] stack = new ItemStack[2];
 	private int bookcases = 0;
+	/*private int[] side = new int[6];
+	private boolean open = false;
+	
+	public void openForModule(){
+	    open = true;
+	}
+	
+	public boolean addModule(int s){
+	    if(side[s] != null)
+	        return false;
+	    
+	    return true;
+	}*/
 	
 	@Override
 	public int getSizeInventory() {
@@ -106,7 +118,7 @@ public class TileWorkstation extends TileEntity implements IInventory{
     	        }
     	    }
 	    }
-	    if(Reference.DEBUG)System.out.println("Found " + this.bookcases + " around");
+	    //if(Reference.DEBUG)System.out.println("Found " + this.bookcases + " around");
 	    return bookcases;
 	}
 	
@@ -125,9 +137,9 @@ public class TileWorkstation extends TileEntity implements IInventory{
                     if(tags.hasKey("refined")){
                         if(tags.getInteger("refined") < 3){
                             tags.setInteger("refined", tags.getInteger("refined")+1);
-                            stack[1] = stack[0];
-                            stack[0] = null;
-                            player.experienceLevel -= IdeaHelper.getRequiredLevels(findBookcases(), player);
+                            //stack[1] = stack[0];
+                            //stack[0] = null;
+                            //player.experienceLevel -= IdeaHelper.getRequiredLevels(findBookcases(), player);
                         }
                     }else{
                         tags.setInteger("refined", 1);

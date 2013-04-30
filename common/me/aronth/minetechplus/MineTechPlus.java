@@ -60,6 +60,7 @@ public class MineTechPlus {
 	@PreInit
 	public void preInit(FMLPreInitializationEvent e){
 		config = new ConfigHandler(e.getSuggestedConfigurationFile());
+		//TickRegistry.registerTickHandler(new TickHandler(), Side.CLIENT);
 	}
 	
 	@Init
@@ -68,6 +69,7 @@ public class MineTechPlus {
 		blocks = new BlockHandler(config);
 		crafting = new CraftingHandler();
 		GameRegistry.registerTileEntity(me.aronth.minetechplus.blocks.tileentitys.TileWorkstation.class, "Workstation");
+		GameRegistry.registerTileEntity(me.aronth.minetechplus.blocks.tileentitys.TileIdeaBuilder.class, "IdeaBuilder");
 		proxy.addNames();
 		proxy.registerHandlers();
 	}

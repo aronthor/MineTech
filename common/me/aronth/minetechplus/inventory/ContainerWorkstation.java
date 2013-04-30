@@ -11,8 +11,8 @@ public class ContainerWorkstation extends Container{
 	
 	public ContainerWorkstation(TileWorkstation tile, IInventory playerInv){
 		
-		addSlotToContainer(new Slot(tile, 0, 44, 35));
-		addSlotToContainer(new Slot(tile, 1, 116, 35));
+		addSlotToContainer(new Slot(tile, 0, 134, 19));
+		//addSlotToContainer(new Slot(tile, 1, 116, 35));
 		
 		for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 9; j++) {

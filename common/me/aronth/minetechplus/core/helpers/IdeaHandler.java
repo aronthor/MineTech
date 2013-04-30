@@ -32,7 +32,7 @@ public class IdeaHandler implements ICraftingHandler{
 	public void popOutAnIdea(World world, EntityPlayer player, ItemStack item, IInventory crafting){
 		Random rand = new Random();
 		
-		int chance = 100;
+		int chance = 68;
 		
 		if(Reference.DEBUG)
 		    chance = 3;
@@ -56,12 +56,12 @@ public class IdeaHandler implements ICraftingHandler{
 			Idea thought = Idea.getIdeaFromGrid(inv);
 			
 			if(thought == null){
-			    System.out.println("No idea found witht these materials");
+			    if(Reference.DEBUG)System.out.println("No idea found witht these materials");
 			    return;
 			}
 			
 			if(IdeaHelper.hasPlayerUnlockedIdea(thought.getIdeaId(), player)){
-			    System.out.println("Already had idea");
+			    if(Reference.DEBUG) System.out.println("Already had idea");
 			    return;
 			}
 			

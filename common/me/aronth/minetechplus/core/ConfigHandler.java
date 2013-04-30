@@ -10,7 +10,7 @@ import net.minecraftforge.common.Property;
 public class ConfigHandler {
 	
 	// Blocks
-	public int IDOreBlock, IDWorkstation;
+	public int IDOreBlock, IDWorkstation, IDIdeaBuilder;
 	// Items
 	public int IDIdeaItem, IDWonderingBook, IDPencil;
 	// Misc
@@ -37,6 +37,10 @@ public class ConfigHandler {
 			Property blockWorkstation = conf.getBlock("Workstation", 801);
 			blockWorkstation.comment = "The workstation where you refine your ideas and craft items";
 			IDWorkstation = blockWorkstation.getInt();
+			
+			Property blockIdeaBuilder = conf.getBlock("IdeaBuilder", 802);
+			blockIdeaBuilder.comment = "This is the extension too the workstation that lets you craft what you think off.";
+            IDIdeaBuilder = blockIdeaBuilder.getInt();
 			
 			// Load Item Ids
 			

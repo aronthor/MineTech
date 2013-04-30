@@ -1,6 +1,8 @@
 package me.aronth.minetechplus.core;
 
+import me.aronth.minetechplus.blocks.BlockIdeaBuilder;
 import me.aronth.minetechplus.blocks.BlockWorkstation;
+import me.aronth.minetechplus.blocks.tileentitys.TileIdeaBuilder;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
@@ -30,16 +32,28 @@ public class BlockRenderHandler implements ISimpleBlockRenderingHandler {
 			renderer.setRenderBounds(0.05, 0, 0.7, 0.3, 0.99, 0.95);
 			renderDo(renderer, block, metadata);	
 		}
+		if(block instanceof BlockIdeaBuilder){
+		    renderer.setRenderBounds(0, 0.7, 0, 1, 0.9, 1);
+		    renderDo(renderer, block, metadata);
+		}
 	}
 
 	@Override
 	public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
 		if(block instanceof BlockWorkstation)
 			renderWorkstation(world, x, y, z, block, modelId, renderer);
+		if(block instanceof BlockIdeaBuilder)
+		    renderIdeaBuilder(world, x, y, z, block, modelId, renderer);
 		return false;
 	}
 
-	private void renderWorkstation(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
+	private void renderIdeaBuilder(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
+	    // Renders the table it self
+        renderer.setRenderBounds(0.1, 0.7, 0.1, 0.9, 0.9, 0.9);
+        renderer.renderStandardBlock(block, x, y, z);
+    }
+
+    private void renderWorkstation(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
 		// Renders the table it self
 		renderer.setRenderBounds(0, 0.7, 0, 1, 1, 1);
 		renderer.renderStandardBlock(block, x, y, z);
@@ -52,7 +66,31 @@ public class BlockRenderHandler implements ISimpleBlockRenderingHandler {
 		renderer.setRenderBounds(0.7, 0, 0.7, 0.95, 0.99, 0.95);
 		renderer.renderStandardBlock(block, x, y, z);
 		renderer.setRenderBounds(0.05, 0, 0.7, 0.3, 0.99, 0.95);
-		renderer.renderStandardBlock(block, x, y, z);	
+		renderer.renderStandardBlock(block, x, y, z);
+		
+		renderer.setOverrideBlockTexture(Block.blockIron.getBlockTextureFromSide(1));
+		
+		if(world.getBlockTileEntity(x, y, z+1) instanceof TileIdeaBuilder){
+		    renderer.setRenderBounds(0.45, 0.6, 0.5, 0.55, 0.7, 1.5);
+		    renderer.renderStandardBlock(block, x, y, z);
+		}
+		
+		if(world.getBlockTileEntity(x, y, z-1) instanceof TileIdeaBuilder){
+            renderer.setRenderBounds(0.45, 0.6, -0.5, 0.55, 0.7, 0.5);
+            renderer.renderStandardBlock(block, x, y, z);
+        }
+		
+		if(world.getBlockTileEntity(x+1, y, z) instanceof TileIdeaBuilder){
+            renderer.setRenderBounds(0.5, 0.6, 0.45, 1.5, 0.7, 0.55);
+            renderer.renderStandardBlock(block, x, y, z);
+        }
+		
+		if(world.getBlockTileEntity(x-1, y, z) instanceof TileIdeaBuilder){
+            renderer.setRenderBounds(-0.5, 0.6, 0.45, 0.5, 0.7, 0.55);
+            renderer.renderStandardBlock(block, x, y, z);
+        }
+		
+		renderer.clearOverrideBlockTexture();
 	}
 
 	@Override

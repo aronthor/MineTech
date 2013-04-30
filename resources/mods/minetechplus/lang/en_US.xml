@@ -12,4 +12,5 @@
 	<entry key="idea.pencil.descr">Edit signs !!</entry>
 	<entry key="idea.minersHelmet.name">Miners Helmet</entry>
 	<entry key="idea.minersHelmet.descr">Bit of damage resistance but light emitting, who needs torches now, huh ?</entry>
+	<entry key="tile.blockIdeaBuilder.name">Idea Builder</entry>
 </properties>
