@@ -15,5 +15,9 @@ public class MTBlockContainer extends BlockContainer{
 	public TileEntity createNewTileEntity(World world) {
 		return null;
 	}
+	
+	/*public String getUnlocalizedName(){
+        return "tile.minetech." + this.getUnlocalizedName();
+    }*/
 
 }

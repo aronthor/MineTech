@@ -8,5 +8,9 @@ public class MTBlock extends Block{
 	public MTBlock(int id, Material material) {
 		super(id, material);
 	}
+	
+	/*public String getUnlocalizedName(){
+        return "tile.minetech." + this.unlocalizedName;
+    }*/
 
 }
