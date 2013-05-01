@@ -56,7 +56,7 @@ public class BlockWorkstation extends MTBlockContainer {
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IconRegister reg) {
 		//this.blockIcon = reg.registerIcon(Reference.MOD_ID.toLowerCase() + ":" + this.getUnlocalizedName().substring(this.getUnlocalizedName().indexOf(".") + 1));
-	    this.blockIcon = reg.registerIcon(Reference.MOD_ID.toLowerCase() + ":" + "blockWorkstation");
+	    this.blockIcon = reg.registerIcon(this.getTexture());
 	}
 	
 	public boolean shouldSideBeRendered(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5){

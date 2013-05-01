@@ -2,15 +2,14 @@ package me.aronth.minetechplus.blocks;
 
 import java.util.List;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import me.aronth.minetechplus.MineTechPlus;
-import me.aronth.minetechplus.core.Reference;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockOres extends MTBlock{
 
@@ -20,6 +19,7 @@ public class BlockOres extends MTBlock{
     public BlockOres(int id){
         super(id, Material.rock);
         this.setCreativeTab(MineTechPlus.tab);
+        this.setUnlocalizedName("oreBlocks");
     }
     
     public Icon getIcon(int side, int meta){
@@ -29,7 +29,7 @@ public class BlockOres extends MTBlock{
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister reg){
        for(int i = 0; i < names.length; i++){
-           icons[i] = reg.registerIcon(Reference.MOD_ID.toLowerCase()+":"+"ore"+names[i]);
+           icons[i] = reg.registerIcon(this.getTexture("ore"+names[i]));
        }
     }
     

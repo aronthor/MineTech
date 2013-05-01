@@ -4,7 +4,6 @@ import me.aronth.minetechplus.MineTechPlus;
 import me.aronth.minetechplus.blocks.tileentitys.TileIdeaBuilder;
 import me.aronth.minetechplus.blocks.tileentitys.TileWorkstation;
 import me.aronth.minetechplus.core.ConfigHandler;
-import me.aronth.minetechplus.core.Reference;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.tileentity.TileEntity;
@@ -37,8 +36,8 @@ public class BlockIdeaBuilder extends MTBlockContainer{
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister reg) {
-        this.blockIcon = reg.registerIcon(Reference.MOD_ID.toLowerCase() + ":" + this.getUnlocalizedName().substring(this.getUnlocalizedName().indexOf(".") + 1));
-        this.iconSide = reg.registerIcon(Reference.MOD_ID.toLowerCase() + ":" + ((String)this.getUnlocalizedName()+"Side").substring(this.getUnlocalizedName().indexOf(".") + 1));
+        this.blockIcon = reg.registerIcon(this.getTexture());
+        this.iconSide = reg.registerIcon(this.getTexture("blockIdeaBuilderSide"));
     }
     
     @Override

@@ -1,5 +1,6 @@
 package me.aronth.minetechplus.blocks;
 
+import me.aronth.minetechplus.core.Reference;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import cpw.mods.fml.common.registry.LanguageRegistry;
@@ -19,6 +20,14 @@ public class MTBlock extends Block{
 	    bName = blockName;
 	    return this;
 	}
+	
+	public String getTexture(){
+	    return Reference.MOD_ID.toLowerCase()+":"+bName;
+	}
+	
+	public String getTexture(String s){
+        return Reference.MOD_ID.toLowerCase()+":"+s;
+    }
 	
 	public String getUnlocalizedName(){
         return "tile.minetech." + this.bName;
