@@ -7,6 +7,7 @@ import me.aronth.minetechplus.core.Reference;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -35,12 +36,12 @@ public class BlockWorkstation extends MTBlockContainer {
     }
 	
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer me, int par6, float par7, float par8, float par9) {
-	    /*if(me.getHeldItem().isItemEqual(new ItemStack(MineTechPlus.instance.blocks.blockIdeaBuilder))){
+	    if(me.getHeldItem() != null && me.getHeldItem().isItemEqual(new ItemStack(MineTechPlus.instance.blocks.blockIdeaBuilder))){
 	        //System.out.println("IDAE BUILDER");
 	        //TileWorkstation station = (TileWorkstation)world.getBlockTileEntity(x, y, z);
 	        // station.
 	        return false;
-	    }*/
+	    }
 	    
 		if(!me.isSneaking()){
 			me.openGui(MineTechPlus.instance, Reference.GUI_WORKSTATION, world, x, y, z);
@@ -54,7 +55,8 @@ public class BlockWorkstation extends MTBlockContainer {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IconRegister reg) {
-		this.blockIcon = reg.registerIcon(Reference.MOD_ID.toLowerCase() + ":" + this.getUnlocalizedName().substring(this.getUnlocalizedName().indexOf(".") + 1));
+		//this.blockIcon = reg.registerIcon(Reference.MOD_ID.toLowerCase() + ":" + this.getUnlocalizedName().substring(this.getUnlocalizedName().indexOf(".") + 1));
+	    this.blockIcon = reg.registerIcon(Reference.MOD_ID.toLowerCase() + ":" + "blockWorkstation");
 	}
 	
 	public boolean shouldSideBeRendered(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5){

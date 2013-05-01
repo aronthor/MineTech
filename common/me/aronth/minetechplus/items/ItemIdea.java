@@ -23,7 +23,7 @@ public class ItemIdea extends MTItem {
 	}
 	
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player){
-	    if(!player.isSneaking())
+	    if(!player.isSneaking() && world.isRemote)
 	        player.openGui(MineTechPlus.instance, Reference.GUI_IDEA, world, (int)player.posX, (int)player.posY, (int)player.posZ);
 		return stack;
 	}

@@ -1,6 +1,7 @@
 package me.aronth.minetechplus.core;
 
 import me.aronth.minetechplus.blocks.BlockIdeaBuilder;
+import me.aronth.minetechplus.blocks.BlockOres;
 import me.aronth.minetechplus.blocks.BlockWorkstation;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -21,6 +22,7 @@ public class BlockHandler {
 	public void initBlocks(){
 		blockWorkstation = new BlockWorkstation(config.IDWorkstation, Material.wood);
 		blockIdeaBuilder = new BlockIdeaBuilder(config.IDIdeaBuilder, Material.wood);
+		blockOre = new BlockOres(config.IDOreBlock);
 		
 		addLanguage();
 		registerBlocks();
@@ -34,6 +36,7 @@ public class BlockHandler {
 	public void registerBlocks(){
 		GameRegistry.registerBlock(blockWorkstation, "Workstation");
 		GameRegistry.registerBlock(blockIdeaBuilder, "IdeaBuilder");
+		GameRegistry.registerBlock(blockOre, me.aronth.minetechplus.items.ItemOreBlocks.class, "OreBlocks");
 	}
 	
 }
