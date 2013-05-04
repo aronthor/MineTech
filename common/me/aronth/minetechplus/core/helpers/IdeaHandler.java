@@ -16,6 +16,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
 import cpw.mods.fml.common.ICraftingHandler;
+import cpw.mods.fml.common.registry.LanguageRegistry;
 
 public class IdeaHandler implements ICraftingHandler{
 	
@@ -106,7 +107,7 @@ public class IdeaHandler implements ICraftingHandler{
 	        	world.spawnEntityInWorld(entItem);
 	        	
 	        	// And finally let the player know of the idea
-				player.sendChatToPlayer("-- You just had an idea! --");
+				player.sendChatToPlayer(LanguageRegistry.instance().getStringLocalization("chat.minetech.gotIdea"));
 	        }
 		}
 	}

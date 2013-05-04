@@ -1,5 +1,6 @@
 package me.aronth.minetechplus.items;
 
+import cpw.mods.fml.common.registry.LanguageRegistry;
 import me.aronth.minetechplus.MineTechPlus;
 import me.aronth.minetechplus.core.Reference;
 import me.aronth.minetechplus.core.helpers.NBTTagHelper;
@@ -32,7 +33,8 @@ public class ItemBookWondering extends MTItem{
 
 	// For displaying the books name correctly
     public String getItemDisplayName(ItemStack stack){
-    	String name = "Book of Wondering";
+        // ".name" is added by vanilla Item.getItemDisplayName !!
+    	String name = LanguageRegistry.instance().getStringLocalization(this.getUnlocalizedName()+".name");
     	
     	if(NBTTagHelper.hasTag(stack, "owner")){
 			name = NBTTagHelper.getString(stack, "owner") + "'s " + name;

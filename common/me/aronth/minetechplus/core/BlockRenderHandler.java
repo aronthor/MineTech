@@ -12,6 +12,7 @@ import org.lwjgl.opengl.GL11;
 
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import cpw.mods.fml.client.registry.RenderingRegistry;
+//import org.lwjgl.opengl.;
 
 public class BlockRenderHandler implements ISimpleBlockRenderingHandler {
 
@@ -52,7 +53,7 @@ public class BlockRenderHandler implements ISimpleBlockRenderingHandler {
         renderer.setRenderBounds(0.1, 0.7, 0.1, 0.9, 0.9, 0.9);
         renderer.renderStandardBlock(block, x, y, z);
     }
-
+	
     private void renderWorkstation(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
 		// Renders the table it self
 		renderer.setRenderBounds(0, 0.7, 0, 1, 1, 1);

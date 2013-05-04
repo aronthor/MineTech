@@ -80,11 +80,15 @@ public class GuiRefineIdea extends GuiContainer {
         fontRenderer.setUnicodeFlag(true);
         
         //if(this.inventorySlots.getSlot(0).getStack().getItem() != null && this.inventorySlots.getSlot(0).getStack().getItem() instanceof ItemIdea){
-        if(station.getStackInSlot(0) != null && station.getStackInSlot(0).getItem() instanceof ItemIdea){
-            Idea idea = Idea.getIdeaById(station.getStackInSlot(0).stackTagCompound.getInteger(Constants.NBT_IDEA));
-            if(idea != null){
-                fontRenderer.drawString(idea.getName(), 8, 6+10, 4210752);
-                fontRenderer.drawSplitString(idea.getDescription(), 8, 6+20, 120, 4210752);
+        if(station.getStackInSlot(0) != null){
+            if(station.getStackInSlot(0).getItem() instanceof ItemIdea){
+                if(station.getStackInSlot(0).stackTagCompound != null && station.getStackInSlot(0).stackTagCompound.hasKey(Constants.NBT_IDEA)){
+                    Idea idea = Idea.getIdeaById(station.getStackInSlot(0).stackTagCompound.getInteger(Constants.NBT_IDEA));
+                    if(idea != null){
+                        fontRenderer.drawString(idea.getName(), 8, 6+10, 4210752);
+                        fontRenderer.drawSplitString(idea.getDescription(), 8, 6+20, 120, 4210752);
+                    }
+                }
             }
         }
         

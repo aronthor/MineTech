@@ -8,14 +8,27 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class MTItem extends Item {
 
+    //private String iName;
+    
 	public MTItem(int id) {
 		super(id);
 	}
+	
+	@Override
+	public Item setUnlocalizedName(String name){
+	    super.setUnlocalizedName("minetech."+name);
+	    return this;
+	}
+	
+	/*@Override
+	public String getLocalizedName(ItemStack stack){
+	    return LanguageRegistry.instance().getStringLocalization("item.minetech."+iName+".name");
+	}*/
 
 	@Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister) {
-		itemIcon = iconRegister.registerIcon(Reference.MOD_ID.toLowerCase() + ":" + this.getUnlocalizedName().substring(this.getUnlocalizedName().indexOf(".") + 1));
+		itemIcon = iconRegister.registerIcon(Reference.MOD_ID.toLowerCase() + ":" + this.getUnlocalizedName().substring(14));
     }
 	
 }

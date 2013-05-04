@@ -4,8 +4,10 @@ import me.aronth.minetechplus.MineTechPlus;
 import me.aronth.minetechplus.blocks.tileentitys.TileIdeaBuilder;
 import me.aronth.minetechplus.blocks.tileentitys.TileWorkstation;
 import me.aronth.minetechplus.core.ConfigHandler;
+import me.aronth.minetechplus.core.Reference;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Icon;
 import net.minecraft.world.IBlockAccess;
@@ -31,6 +33,16 @@ public class BlockIdeaBuilder extends MTBlockContainer{
         if(par1 == 1)
             return blockIcon;
         return iconSide;
+    }
+    
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer me, int par6, float par7, float par8, float par9) {
+        
+        
+        if(!me.isSneaking()){
+            me.openGui(MineTechPlus.instance, Reference.GUI_IDEABUILDER, world, x, y, z);
+            return true;
+        }
+        return false;
     }
     
     @Override

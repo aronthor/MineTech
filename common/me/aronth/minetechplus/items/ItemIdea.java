@@ -17,7 +17,7 @@ public class ItemIdea extends MTItem {
 
 	public ItemIdea(int itemId) {
 		super(itemId);
-		this.setUnlocalizedName("Idea");
+		this.setUnlocalizedName("idea");
 		this.setCreativeTab(MineTechPlus.tab);
 		this.setMaxStackSize(1);
 	}

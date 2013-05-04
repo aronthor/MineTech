@@ -8,11 +8,14 @@ import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.Property;
 
 public class ConfigHandler {
+    
+    private int blockRange = 800;
+    private int itemRange = 7000;
 	
 	// Blocks
 	public int IDOreBlock, IDWorkstation, IDIdeaBuilder;
 	// Items
-	public int IDIdeaItem, IDWonderingBook, IDPencil;
+	public int IDIdeaItem, IDWonderingBook, IDPencil, IDResource;
 	// Misc
 	public int ideaChance;
 	public static int renderId;
@@ -30,15 +33,15 @@ public class ConfigHandler {
 			
 			// Load Block Ids
 			
-			Property blockOre = conf.getBlock("OreBlocks", 800);
+			Property blockOre = conf.getBlock("OreBlocks", blockRange);
 			blockOre.comment = "Ore Block ID, this includes Tin, Copper and Others";
 			IDOreBlock = blockOre.getInt();
 			
-			Property blockWorkstation = conf.getBlock("Workstation", 801);
+			Property blockWorkstation = conf.getBlock("Workstation", blockRange+1);
 			blockWorkstation.comment = "The workstation where you refine your ideas and craft items";
 			IDWorkstation = blockWorkstation.getInt();
 			
-			Property blockIdeaBuilder = conf.getBlock("IdeaBuilder", 802);
+			Property blockIdeaBuilder = conf.getBlock("IdeaBuilder", blockRange+2);
 			blockIdeaBuilder.comment = "This is the extension too the workstation that lets you craft what you think off.";
             IDIdeaBuilder = blockIdeaBuilder.getInt();
 			
@@ -55,6 +58,10 @@ public class ConfigHandler {
 			Property itemPencil = conf.getItem("Pencil", 4002);
 			itemPencil.comment = "Pencil is an idea you have for editing signs";
             IDPencil = itemPencil.getInt();
+            
+            Property itemResource = conf.getItem("ItemResources", 4003);
+            itemResource.comment = "Item resources like copper and tin ingots";
+            IDResource = itemResource.getInt();
 			
 		}catch(RuntimeException e){
 			MineTechPlus.instance.log.log(Level.INFO, "Config file not found, creating new one");

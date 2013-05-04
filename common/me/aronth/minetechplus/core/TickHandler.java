@@ -9,24 +9,25 @@ public class TickHandler implements ITickHandler{
 
     @Override
     public void tickStart(EnumSet<TickType> type, Object... tickData) {
-        /*for(TickType tickType : type){
-            if(tickType == TickType.PLAYER){
-                EntityPlayer me = (EntityPlayer)tickData[0];
-                me.cloakUrl = "http://www.mccapes.com/GalleryImages6x/1cb3cec5800327dfd22a1e0beced2c0c.png";
-                //me.
-            }
-        }*/
-    }
-
-    @Override
-    public void tickEnd(EnumSet<TickType> type, Object... tickData) {
-        // TODO Auto-generated method stub
         
     }
 
     @Override
+    public void tickEnd(EnumSet<TickType> type, Object... tickData) {
+        for(TickType tickType : type){
+            if(tickType == TickType.PLAYER){
+                //EntityPlayer me = (EntityPlayer)tickData[0];
+                
+            }
+            if(tickType == TickType.RENDER){
+                
+            }
+        }
+    }
+
+    @Override
     public EnumSet<TickType> ticks() {
-        return EnumSet.of(TickType.PLAYER);
+        return EnumSet.of(TickType.PLAYER, TickType.RENDER);
     }
 
     @Override

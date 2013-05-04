@@ -12,7 +12,7 @@ public class ItemPencil extends MTItem{
     public ItemPencil(int id) {
         super(id);
         this.setMaxStackSize(1);
-        this.setMaxDamage(7);
+        //this.setMaxDamage(7);
         this.setUnlocalizedName("pencil");
         this.setCreativeTab(MineTechPlus.tab);
     }
@@ -25,7 +25,7 @@ public class ItemPencil extends MTItem{
             me.displayGUIEditSign(clicked);
         }
         
-        stack.setItemDamage(stack.getItemDamage()-1);
+        //stack.setItemDamage(stack.getItemDamage()-1);
         
         return false;
     }

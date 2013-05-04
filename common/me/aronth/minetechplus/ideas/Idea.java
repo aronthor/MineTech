@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.Icon;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
 public class Idea {
@@ -115,5 +116,13 @@ public class Idea {
         for(Idea idea : ideaList){
             System.out.println(idea.getName());
         }
+    }
+
+    public Icon getGostIcon(int slot) {
+        switch(slot){
+            case 0:
+                return Item.appleGold.getIconFromDamage(0);
+        }
+        return Item.axeIron.getIconFromDamage(0);
     }
 }

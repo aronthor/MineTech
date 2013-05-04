@@ -20,6 +20,13 @@
 	<entry key="tile.minetech.oreBlocks.oreCopper.name">Copper Ore</entry>
 	<entry key="tile.minetech.oreBlocks.oreTin.name">Tin Ore</entry>
 	<!-- Items -->
+	<entry key="item.minetech.resource.name">Unknown Resource</entry>
+	<entry key="item.minetech.ingotCopper.name">Copper Ingot</entry>
+	<entry key="item.minetech.ingotTin.name">Tin Ingot</entry>
+	<entry key="item.minetech.idea.name">Idea</entry>
+	<entry key="item.minetech.pencil.name">Pencil</entry>
+	<entry key="item.minetech.bookOfWondering.name">Book of Wondering</entry>
 	<!-- Gui -->
 	<!-- Chat messages -->
+	<entry key="chat.minetech.gotIdea">-- You just had an idea! --</entry>
 </properties>

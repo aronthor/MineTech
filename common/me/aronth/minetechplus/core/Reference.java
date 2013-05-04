@@ -5,12 +5,13 @@ public class Reference {
 	public static final String MOD_NAME = "MineTech+";
 	public static final String VERSION = "pre1";
 	
-	public static final boolean DEBUG = false;
+	public static final boolean DEBUG = true;
 	
 	// Gui IDs !!
 	public static final int GUI_WORKSTATION = 1;
 	public static final int GUI_IDEA = 2;
 	public static final int GUI_BOOKOFWONDERING = 3;
+	public static final int GUI_IDEABUILDER = 4;
 	
 	// Gui Textures
 	public static final String GUI_TEXTURE_LOCATION = "/mods/minetechplus/textures/gui/";
@@ -18,4 +19,5 @@ public class Reference {
 	public static final String GUI_BOOKOFWONDERING_TEXTURE = GUI_TEXTURE_LOCATION+"bookOfWondering.png";
     public static final String GUI_REFINEIDEA = GUI_TEXTURE_LOCATION + "refineIdea.png";
     public static final String GUI_BUTTON_REFINE = GUI_TEXTURE_LOCATION + "buttonRefine.png";
+    public static final String GUI_IDAEBUILDER_TEXTURE = GUI_TEXTURE_LOCATION+"ideaBuilder.png";
 }

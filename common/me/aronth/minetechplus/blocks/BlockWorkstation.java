@@ -2,6 +2,7 @@ package me.aronth.minetechplus.blocks;
 
 import me.aronth.minetechplus.MineTechPlus;
 import me.aronth.minetechplus.blocks.tileentitys.TileWorkstation;
+import me.aronth.minetechplus.core.BlockHandler;
 import me.aronth.minetechplus.core.ConfigHandler;
 import me.aronth.minetechplus.core.Reference;
 import net.minecraft.block.material.Material;
@@ -36,7 +37,7 @@ public class BlockWorkstation extends MTBlockContainer {
     }
 	
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer me, int par6, float par7, float par8, float par9) {
-	    if(me.getHeldItem() != null && me.getHeldItem().isItemEqual(new ItemStack(MineTechPlus.instance.blocks.blockIdeaBuilder))){
+	    if(me.getHeldItem() != null && me.getHeldItem().isItemEqual(new ItemStack(BlockHandler.blockIdeaBuilder))){
 	        //System.out.println("IDAE BUILDER");
 	        //TileWorkstation station = (TileWorkstation)world.getBlockTileEntity(x, y, z);
 	        // station.

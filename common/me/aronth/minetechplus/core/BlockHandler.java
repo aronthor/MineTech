@@ -11,7 +11,7 @@ public class BlockHandler {
 
 	private ConfigHandler config;
 	
-	public Block blockOre, blockWorkstation, blockIdeaBuilder;
+	public static Block blockOre, blockWorkstation, blockIdeaBuilder;
 	
 	public BlockHandler(ConfigHandler configHandler){
 		config = configHandler;

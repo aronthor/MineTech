@@ -1,7 +1,9 @@
 package me.aronth.minetechplus.core;
 
-import cpw.mods.fml.common.registry.LanguageRegistry;
-import me.aronth.minetechplus.items.*;
+import me.aronth.minetechplus.items.ItemBookWondering;
+import me.aronth.minetechplus.items.ItemIdea;
+import me.aronth.minetechplus.items.ItemPencil;
+import me.aronth.minetechplus.items.ItemResources;
 import net.minecraft.item.Item;
 
 public class ItemHandler {
@@ -10,7 +12,7 @@ public class ItemHandler {
 	private ConfigHandler config;
 	
 	// Empty fields for holding items
-	public static Item idea, bookOfWondering, pencil;
+	public static Item idea, bookOfWondering, pencil, resources;
 	
 	public ItemHandler(ConfigHandler handler){
 		config = handler;
@@ -23,13 +25,6 @@ public class ItemHandler {
 		idea = new ItemIdea(config.IDIdeaItem);
 		bookOfWondering = new ItemBookWondering(config.IDWonderingBook);
 		pencil = new ItemPencil(config.IDPencil);
-		
-		addLanguage();
-	}
-	
-	public void addLanguage(){
-		LanguageRegistry.addName(idea, "Idea");
-		LanguageRegistry.addName(bookOfWondering, "Book Of Wondering");
-		LanguageRegistry.addName(pencil, "Pencil");
+		resources = new ItemResources(config.IDResource);
 	}
 }
