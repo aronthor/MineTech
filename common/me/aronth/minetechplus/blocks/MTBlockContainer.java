@@ -3,7 +3,7 @@ package me.aronth.minetechplus.blocks;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import me.aronth.minetechplus.core.Reference;
+import me.aronth.minetechplus.lib.Reference;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;

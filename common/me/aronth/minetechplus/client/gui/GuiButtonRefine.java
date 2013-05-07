@@ -1,6 +1,6 @@
 package me.aronth.minetechplus.client.gui;
 
-import me.aronth.minetechplus.core.Reference;
+import me.aronth.minetechplus.lib.Reference;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 

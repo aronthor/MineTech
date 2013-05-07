@@ -2,7 +2,7 @@ package me.aronth.minetechplus.core.helpers;
 
 import java.io.ByteArrayOutputStream;
 
-import me.aronth.minetechplus.core.Reference;
+import me.aronth.minetechplus.lib.Reference;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.packet.Packet250CustomPayload;
 import cpw.mods.fml.common.network.PacketDispatcher;

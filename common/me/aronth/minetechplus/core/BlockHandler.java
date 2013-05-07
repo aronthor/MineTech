@@ -19,9 +19,9 @@ public class BlockHandler {
 	}
 	
 	public void initBlocks(){
-		blockWorkstation = new BlockWorkstation(config.IDWorkstation, Material.wood);
-		blockIdeaBuilder = new BlockIdeaBuilder(config.IDIdeaBuilder, Material.wood);
-		blockOre = new BlockOres(config.IDOreBlock);
+		blockWorkstation = new BlockWorkstation(config.IDWorkstation, Material.wood).setHardness(2.5F);
+		blockIdeaBuilder = new BlockIdeaBuilder(config.IDIdeaBuilder, Material.wood).setHardness(2.5F);
+		blockOre = new BlockOres(config.IDOreBlock).setHardness(3.0F).setResistance(5.0F);
 		
 		registerBlocks();
 	}

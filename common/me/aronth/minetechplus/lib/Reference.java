@@ -1,4 +1,4 @@
-package me.aronth.minetechplus.core;
+package me.aronth.minetechplus.lib;
 
 public class Reference {
 	public static final String MOD_ID = "MineTechPlus";

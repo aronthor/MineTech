@@ -1,6 +1,5 @@
 package me.aronth.minetechplus.lib;
 
-import me.aronth.minetechplus.core.Reference;
 
 public class Constants {
 	
@@ -9,5 +8,6 @@ public class Constants {
 	public static final String NBT_IDEA = "thought";
 	public static final String NBT_IDEAS_UNLOCKED = Reference.MOD_ID+"-idea";
 	public static final String NBT_IDEA_UNLOCKED = "ideaUnlocked:";
+    public static final String NBT_REFINED = "refined";
 	
 }

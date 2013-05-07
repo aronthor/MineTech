@@ -5,17 +5,19 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 
 import me.aronth.minetechplus.blocks.tileentitys.TileWorkstation;
-import me.aronth.minetechplus.core.Reference;
 import me.aronth.minetechplus.core.helpers.PacketHelper;
 import me.aronth.minetechplus.ideas.Idea;
 import me.aronth.minetechplus.inventory.ContainerWorkstation;
 import me.aronth.minetechplus.items.ItemIdea;
 import me.aronth.minetechplus.lib.Constants;
+import me.aronth.minetechplus.lib.Reference;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 
 import org.lwjgl.opengl.GL11;
+
+import cpw.mods.fml.common.registry.LanguageRegistry;
 
 public class GuiRefineIdea extends GuiContainer {
 
@@ -71,7 +73,7 @@ public class GuiRefineIdea extends GuiContainer {
     @Override
     protected void drawGuiContainerForegroundLayer(int param1, int param2) {
         //fontRenderer.setUnicodeFlag(true);
-        fontRenderer.drawString("Workstation", 8, 6, 4210752);
+        fontRenderer.drawString(LanguageRegistry.instance().getStringLocalization("gui.minetech.workstation"), 8, 6, 4210752);
         fontRenderer.drawString("Inventory", 8, this.ySize - 96 + 2, 4210752);
         
         /*int bookcases = this.station.findBookcases();

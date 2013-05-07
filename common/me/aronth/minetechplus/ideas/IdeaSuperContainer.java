@@ -8,6 +8,7 @@ public class IdeaSuperContainer extends Idea{
 
     public IdeaSuperContainer(int id) {
         super(id);
+        setRecipe(1);
         addMaterial(new ItemStack(Block.planks));
         addMaterial(new ItemStack(Block.chest));
         addMaterial(new ItemStack(Block.chestTrapped));

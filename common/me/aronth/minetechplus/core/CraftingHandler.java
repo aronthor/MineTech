@@ -1,5 +1,6 @@
 package me.aronth.minetechplus.core;
 
+import me.aronth.minetechplus.lib.Reference;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

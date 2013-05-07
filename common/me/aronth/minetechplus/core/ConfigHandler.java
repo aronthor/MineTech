@@ -47,19 +47,19 @@ public class ConfigHandler {
 			
 			// Load Item Ids
 			
-			Property itemIdea = conf.getItem("Idea", 4000);
+			Property itemIdea = conf.getItem("Idea", itemRange);
 			itemIdea.comment = "The idea paper that falls on the ground";
 			IDIdeaItem = itemIdea.getInt();
 			
-			Property itemBookOfWondering = conf.getItem("BookOfWondering", 4001);
+			Property itemBookOfWondering = conf.getItem("BookOfWondering", itemRange+1);
 			itemBookOfWondering.comment = "The Book of Wondering, for you too store your ideas";
 			IDWonderingBook = itemBookOfWondering.getInt();
 			
-			Property itemPencil = conf.getItem("Pencil", 4002);
+			Property itemPencil = conf.getItem("Pencil", itemRange+2);
 			itemPencil.comment = "Pencil is an idea you have for editing signs";
             IDPencil = itemPencil.getInt();
             
-            Property itemResource = conf.getItem("ItemResources", 4003);
+            Property itemResource = conf.getItem("ItemResources", itemRange+3);
             itemResource.comment = "Item resources like copper and tin ingots";
             IDResource = itemResource.getInt();
 			

@@ -7,7 +7,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
 
 public class ContainerIdea extends Container{
 
@@ -19,7 +18,7 @@ public class ContainerIdea extends Container{
 		
 		ItemStack[] stacks;
 		
-		NBTTagList nbttaglist = ideaStack.stackTagCompound.getTagList("Items");
+		/*NBTTagList nbttaglist = ideaStack.stackTagCompound.getTagList("Items");
         stacks = new ItemStack[ideaStack.stackTagCompound.getInteger("invSize")];
 
         for (int i = 0; i < nbttaglist.tagCount(); ++i){
@@ -28,10 +27,22 @@ public class ContainerIdea extends Container{
             if (j >= 0 && j < stacks.length){
                 stacks[j] = ItemStack.loadItemStackFromNBT(comp2);
             }
-        }
+        }*/
+        
+        Idea thought = Idea.getIdeaById(ideaStack.stackTagCompound.getInteger(NBT_IDEA));
+        
+        this.ideaName = thought.getName();
+        this.ideaDescr = thought.getDescription();
+        
+        NBTTagCompound res = (NBTTagCompound) ideaStack.stackTagCompound.getTagList("Result").tagAt(0);
+        ItemStack resultItem = ItemStack.loadItemStackFromNBT(res);
+        
         
         if(ideaStack.stackTagCompound.hasKey(Constants.NBT_INVENTORY_SIZE)){
             int invSize = ideaStack.stackTagCompound.getInteger(Constants.NBT_INVENTORY_SIZE);
+            
+            stacks = Idea.recipeHandler.getRecipeStacks(thought.ideaIndex-1);
+            
             if(invSize == 9){
                 int index = 0;
                 for(int a = 0; a < 3; a++){
@@ -40,7 +51,7 @@ public class ContainerIdea extends Container{
                         ++index;
                     }
                 }
-            }else if(invSize == 4){
+            }/*else if(invSize == 4){
                 int index = 0;
                 for(int a = 0; a < 2; a++){
                     for(int b = 0; b < 2; b++){
@@ -48,18 +59,13 @@ public class ContainerIdea extends Container{
                         ++index;
                     }
                 }
-            }
+            }*/
         }else{
             System.out.println("Errmmm.. Invalid idea");
         }
 		
-		Idea thought = Idea.getIdeaById(ideaStack.stackTagCompound.getInteger(NBT_IDEA));
 		
-		this.ideaName = thought.getName();
-		this.ideaDescr = thought.getDescription();
-		
-		NBTTagCompound res = (NBTTagCompound) ideaStack.stackTagCompound.getTagList("Result").tagAt(0);
-		ItemStack resultItem = ItemStack.loadItemStackFromNBT(res);
+		resultItem = Idea.recipeHandler.getRecipe(thought.ideaIndex-1).getResault();
 		
 		addSlotToContainer(new SlotDumb(86, 17, resultItem));
 	}

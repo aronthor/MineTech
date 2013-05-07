@@ -2,6 +2,7 @@ package me.aronth.minetechplus.blocks.tileentitys;
 
 import me.aronth.minetechplus.core.helpers.IdeaHelper;
 import me.aronth.minetechplus.items.ItemIdea;
+import me.aronth.minetechplus.lib.Constants;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -134,15 +135,15 @@ public class TileWorkstation extends TileEntity implements IInventory{
             if(this.stack[0] != null){
                 if(stack[0].getItem() instanceof ItemIdea){
                     NBTTagCompound tags = stack[0].stackTagCompound;
-                    if(tags.hasKey("refined")){
-                        if(tags.getInteger("refined") < 3){
-                            tags.setInteger("refined", tags.getInteger("refined")+1);
+                    if(tags.hasKey(Constants.NBT_REFINED)){
+                        if(tags.getInteger(Constants.NBT_REFINED) < 3){
+                            tags.setInteger(Constants.NBT_REFINED, tags.getInteger(Constants.NBT_REFINED)+1);
                             //stack[1] = stack[0];
                             //stack[0] = null;
                             //player.experienceLevel -= IdeaHelper.getRequiredLevels(findBookcases(), player);
                         }
                     }else{
-                        tags.setInteger("refined", 1);
+                        tags.setInteger(Constants.NBT_REFINED, 1);
                     }
                 }
             }

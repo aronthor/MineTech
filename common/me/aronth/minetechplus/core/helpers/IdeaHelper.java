@@ -1,8 +1,8 @@
 package me.aronth.minetechplus.core.helpers;
 
 import me.aronth.minetechplus.MineTechPlus;
-import me.aronth.minetechplus.core.Reference;
 import me.aronth.minetechplus.ideas.Idea;
+import me.aronth.minetechplus.lib.Reference;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;

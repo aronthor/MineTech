@@ -8,6 +8,7 @@ public class IdeaPencil extends Idea {
 
     public IdeaPencil(int id) {
         super(id);
+        setRecipe(2);
         addMaterial(new ItemStack(Item.coal, 1));
         addMaterial(new ItemStack(Item.stick));
         addMaterial(new ItemStack(Item.sign));

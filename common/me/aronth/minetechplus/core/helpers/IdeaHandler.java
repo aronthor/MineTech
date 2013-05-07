@@ -6,8 +6,8 @@ import static me.aronth.minetechplus.lib.Constants.NBT_INVENTORY_SIZE;
 import java.util.Random;
 
 import me.aronth.minetechplus.core.ItemHandler;
-import me.aronth.minetechplus.core.Reference;
 import me.aronth.minetechplus.ideas.Idea;
+import me.aronth.minetechplus.lib.Reference;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;

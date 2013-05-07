@@ -2,6 +2,8 @@ package me.aronth.minetechplus.core;
 
 import java.util.EnumSet;
 
+import me.aronth.minetechplus.lib.Reference;
+
 import cpw.mods.fml.common.ITickHandler;
 import cpw.mods.fml.common.TickType;
 

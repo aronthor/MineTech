@@ -7,11 +7,12 @@ import me.aronth.minetechplus.core.ConfigHandler;
 import me.aronth.minetechplus.core.CraftingHandler;
 import me.aronth.minetechplus.core.CreativeTabMineTech;
 import me.aronth.minetechplus.core.ItemHandler;
-import me.aronth.minetechplus.core.Reference;
 import me.aronth.minetechplus.core.helpers.PlayerTracker;
 import me.aronth.minetechplus.core.network.CommandMineTech;
 import me.aronth.minetechplus.core.network.PacketHandler;
 import me.aronth.minetechplus.core.network.ProxyCommon;
+import me.aronth.minetechplus.lib.Reference;
+import me.aronth.minetechplus.world.WorldGenOres;
 import net.minecraft.creativetab.CreativeTabs;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
@@ -77,6 +78,7 @@ public class MineTechPlus {
 	@PostInit
 	public void postInit(FMLPostInitializationEvent e){
 	    GameRegistry.registerPlayerTracker(playerTracker);
+	    GameRegistry.registerWorldGenerator(new WorldGenOres());
 	}
 	
 	@ServerStarting

@@ -3,7 +3,7 @@ package me.aronth.minetechplus.items;
 import java.util.List;
 
 import me.aronth.minetechplus.MineTechPlus;
-import me.aronth.minetechplus.core.Reference;
+import me.aronth.minetechplus.lib.Reference;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;

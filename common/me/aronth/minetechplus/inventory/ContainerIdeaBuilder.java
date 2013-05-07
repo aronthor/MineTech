@@ -9,20 +9,29 @@ import net.minecraft.item.ItemStack;
 
 public class ContainerIdeaBuilder extends Container{
     
+    //private TileIdeaBuilder ideaBuilder;
+    //public IInventory result = new InventorySmall(1);
+    
+    
     public ContainerIdeaBuilder(IInventory playerInv, TileIdeaBuilder builder){
+        
+        //ideaBuilder = builder;
+        //builder.matrix = new CraftingMatrix(this, 3, 3);
         
         int x = 48;
         int y = 17;
         
         int slotId = 0;
-        for(int i = 0; i < 3; i++){
-            for(int j = 0; j < 3; j++){
-                addSlotToContainer(new SlotGhost(builder.matrix, slotId, x+(18*i), y+(18*j)));
+        for(int row = 0; row < 3; row++){
+            for(int slot = 0; slot < 3; slot++){
+                addSlotToContainer(new Slot(builder.matrix, slotId, x+(slot*18), y+(row*18)));
                 slotId++;
             }
         }
         
-        addSlotToContainer(new SlotIdea(builder.matrix, 9, 18, 35));
+        
+        addSlotToContainer(new SlotIdea(builder.idea, 0, 18, 35));
+        addSlotToContainer(new SlotIdeaCrafting(builder.result, builder, 0, 138, 35));
         
         for (int i = 0; i < 3; i++) 
             for (int j = 0; j < 9; j++) 
@@ -30,7 +39,16 @@ public class ContainerIdeaBuilder extends Container{
 
         for (int i = 0; i < 9; i++) 
             addSlotToContainer(new Slot(playerInv, i, 8 + i * 18, 142));
+        
+        onCraftMatrixChanged(builder.matrix);
     }
+    
+    @Override
+    public void onCraftMatrixChanged(IInventory inv){
+        //System.out.println("Change");
+        //builder.
+    }
+    
     
     public ItemStack transferStackInSlot(EntityPlayer me, int slotId){
         ItemStack stack = null;
@@ -71,13 +89,4 @@ public class ContainerIdeaBuilder extends Container{
     public boolean canInteractWith(EntityPlayer entityplayer) {
         return true;
     }
-
-    /*public void updateGhosts() {
-        for(int i = 0; i < inventorySlots.size(); i++){
-            if(inventorySlots.get(i) instanceof SlotGhost){
-                ((SlotGhost)inventorySlots.get(i)).setGhost(Item.diamond.getIconFromDamage(0));
-            }
-        }
-    }*/
-
 }

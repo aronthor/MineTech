@@ -2,10 +2,10 @@ package me.aronth.minetechplus.ideas;
 
 import java.util.ArrayList;
 
+import me.aronth.minetechplus.crafting.RecipesIdeaBuilder;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
 public class Idea {
@@ -19,11 +19,15 @@ public class Idea {
     public static final Idea pencil = new IdeaPencil(3).setName("pencil");
     public static final Idea minersHelmet = new IdeaMinersHelmet(4).setName("minersHelmet");
     
+    // Idea Recipe Handler
+    public static RecipesIdeaBuilder recipeHandler = new RecipesIdeaBuilder();
+    
     // Simple fields for idea
     public int ideaIndex;
     public String ideaName;
     private ArrayList<ItemStack> materials = new ArrayList<ItemStack>();
     private Object contentOfIdea;
+    private int recipe;
     
     public Idea(int id){
         if(ideaList[id] != null){
@@ -35,6 +39,14 @@ public class Idea {
     }
     
     // Usefull methods
+    
+    public void setRecipe(int recipeId){
+        recipe = recipeId;
+    }
+    
+    public int getRecipe(){
+        return recipe;
+    }
     
     public void addMaterial(ItemStack material){
         if(!materials.contains(material))
@@ -118,11 +130,8 @@ public class Idea {
         }
     }
 
-    public Icon getGostIcon(int slot) {
-        switch(slot){
-            case 0:
-                return Item.appleGold.getIconFromDamage(0);
-        }
-        return Item.axeIron.getIconFromDamage(0);
+    public ItemStack[] getGostIcon() {
+        //return null;
+        return recipeHandler.getRecipeStacks(this.recipe);
     }
 }

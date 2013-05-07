@@ -2,8 +2,8 @@ package me.aronth.minetechplus.items;
 
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import me.aronth.minetechplus.MineTechPlus;
-import me.aronth.minetechplus.core.Reference;
 import me.aronth.minetechplus.core.helpers.NBTTagHelper;
+import me.aronth.minetechplus.lib.Reference;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
