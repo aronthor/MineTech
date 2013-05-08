@@ -4,10 +4,12 @@ import me.aronth.minetechplus.MineTechPlus;
 import me.aronth.minetechplus.blocks.tileentitys.TileIdeaBuilder;
 import me.aronth.minetechplus.blocks.tileentitys.TileWorkstation;
 import me.aronth.minetechplus.client.gui.GuiBookOfWondering;
+import me.aronth.minetechplus.client.gui.GuiCrafting;
 import me.aronth.minetechplus.client.gui.GuiIdea;
 import me.aronth.minetechplus.client.gui.GuiIdeaBuilder;
 import me.aronth.minetechplus.client.gui.GuiRefineIdea;
 import me.aronth.minetechplus.core.helpers.IdeaHandler;
+import me.aronth.minetechplus.inventory.ContainerCrafting;
 import me.aronth.minetechplus.inventory.ContainerIdea;
 import me.aronth.minetechplus.inventory.ContainerIdeaBuilder;
 import me.aronth.minetechplus.inventory.ContainerWorkstation;
@@ -50,6 +52,8 @@ public class ProxyCommon implements IGuiHandler{
 			return new ContainerIdea(player);
 		if(ID == Reference.GUI_IDEABUILDER)
 		    return new ContainerIdeaBuilder(player.inventory, (TileIdeaBuilder)world.getBlockTileEntity(x, y, z));
+		if(ID == Reference.GUI_CRAFTINGTABLE)
+            return new ContainerCrafting(player.inventory, world, x, y, z);
 		return null;
 	}
 
@@ -63,6 +67,8 @@ public class ProxyCommon implements IGuiHandler{
 			return new GuiBookOfWondering(player);
 		if(ID == Reference.GUI_IDEABUILDER)
 		    return new GuiIdeaBuilder(player.inventory, (TileIdeaBuilder)world.getBlockTileEntity(x, y, z));
+		if(ID == Reference.GUI_CRAFTINGTABLE)
+            return new GuiCrafting(player.inventory, world, x, y, z);
 		return null;
 	}
 	

@@ -20,6 +20,7 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 public class GuiIdeaBuilder extends GuiContainer{
 
     private TileIdeaBuilder master;
+    private GuiInfo bubble = new GuiInfo();
     
     public GuiIdeaBuilder(IInventory inv, TileIdeaBuilder builder) {
         super(new ContainerIdeaBuilder(inv, builder));
@@ -28,18 +29,26 @@ public class GuiIdeaBuilder extends GuiContainer{
 
     @Override
     protected void drawGuiContainerBackgroundLayer(float f, int i, int j) {
+        //this.zLevel = -10f;
         GL11.glColor4f(1f, 1f, 1f, 1f);
         int x = (width - xSize) / 2;
         int y = (height - ySize) / 2;
         this.mc.renderEngine.bindTexture(Reference.GUI_IDAEBUILDER_TEXTURE);
         this.drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
+        //this.zLevel = 0f;
+        //GuiInfo bubble = new GuiInfo(x+20, y+53, master.getInfoMessage(), master.getHasError());
+        //bubble.render();
+        bubble.drawScreen(i, j, x+20, y+53, master.getInfoMessage(), master.getHasError());
+        
         //this.drawGhostRecipe();
+        //drawRecipeOverlay();
     }
     
     @Override
     protected void drawGuiContainerForegroundLayer(int param1, int param2) {
         fontRenderer.drawString(LanguageRegistry.instance().getStringLocalization("gui.minetech.ideabuilder"), 8, 6, 4210752);
         fontRenderer.drawString("Inventory", 8, this.ySize - 96 + 2, 4210752);
+        
     }
     
     public void drawGhostRecipe(){
@@ -66,9 +75,6 @@ public class GuiIdeaBuilder extends GuiContainer{
                 }
             }
         }
-        
-        drawRecipeOverlay();
-        
     }
     
     private void drawItemStack(ItemStack par1ItemStack, int par2, int par3, String par4Str){
@@ -85,9 +91,9 @@ public class GuiIdeaBuilder extends GuiContainer{
         RenderHelper.enableStandardItemLighting();
     }
     
-    private void drawRecipeOverlay(){
+    public void drawRecipeOverlay(){
         RenderHelper.disableStandardItemLighting();
-        //this.zLevel = 0.0F;
+        //this.zLevel = -1.0F;
         int x = ( (width - xSize) / 2 ) + 47;
         int y = ( (height - ySize) / 2 ) + 16;
         int size = 54;

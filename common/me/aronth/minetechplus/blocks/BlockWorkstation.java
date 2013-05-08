@@ -1,6 +1,8 @@
 package me.aronth.minetechplus.blocks;
 
 import me.aronth.minetechplus.MineTechPlus;
+import me.aronth.minetechplus.blocks.tileentitys.TileCraftingTable;
+import me.aronth.minetechplus.blocks.tileentitys.TileIdeaBuilder;
 import me.aronth.minetechplus.blocks.tileentitys.TileWorkstation;
 import me.aronth.minetechplus.core.BlockHandler;
 import me.aronth.minetechplus.core.ConfigHandler;
@@ -26,30 +28,31 @@ public class BlockWorkstation extends MTBlockContainer {
 	public void breakBlock(World par1World, int par2, int par3, int par4, int par5, int par6){
 	    //System.out.println(par2 + ":" + par3  + ":" + par4  + ":" + par5  + ":" + par6);
         super.breakBlock(par1World, par2, par3, par4, par5, par6);
-        if(par1World.getBlockId(par2+1, par3, par4) == MineTechPlus.instance.config.IDIdeaBuilder)
+        if(isBlockAModule(par1World.getBlockId(par2+1, par3, par4)))
             par1World.setBlockToAir(par2+1, par3, par4);
-        if(par1World.getBlockId(par2-1, par3, par4) == MineTechPlus.instance.config.IDIdeaBuilder)
+        if(isBlockAModule(par1World.getBlockId(par2-1, par3, par4)))
             par1World.setBlockToAir(par2-1, par3, par4);
-        if(par1World.getBlockId(par2, par3, par4+1) == MineTechPlus.instance.config.IDIdeaBuilder)
+        if(isBlockAModule(par1World.getBlockId(par2, par3, par4+1)))
             par1World.setBlockToAir(par2, par3, par4+1);
-        if(par1World.getBlockId(par2, par3, par4-1) == MineTechPlus.instance.config.IDIdeaBuilder)
+        if(isBlockAModule(par1World.getBlockId(par2, par3, par4-1)))
             par1World.setBlockToAir(par2, par3, par4-1);
     }
 	
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer me, int par6, float par7, float par8, float par9) {
-	    if(me.getHeldItem() != null && me.getHeldItem().isItemEqual(new ItemStack(BlockHandler.blockIdeaBuilder))){
+	    if(me.getHeldItem() != null && isBlockAModule(me.getHeldItem())){
 	        //System.out.println("IDAE BUILDER");
 	        //TileWorkstation station = (TileWorkstation)world.getBlockTileEntity(x, y, z);
 	        // station.
 	        return false;
 	    }
 	    
-		if(!me.isSneaking()){
-			me.openGui(MineTechPlus.instance, Reference.GUI_WORKSTATION, world, x, y, z);
-			//me.sendChatToPlayer("OPEN GUI NOW !!");
-			((TileWorkstation)world.getBlockTileEntity(x, y, z)).findBookcases();
-			return true;
-		}
+	    if(!me.isSneaking()){
+	        TileWorkstation station = (TileWorkstation)world.getBlockTileEntity(x, y, z);
+	        if(!station.isRefining(me)){
+	            me.openGui(MineTechPlus.instance, Reference.GUI_WORKSTATION, world, x, y, z);
+	            return true;
+	        }
+	    }
 		return false;
 	}
 	
@@ -84,4 +87,28 @@ public class BlockWorkstation extends MTBlockContainer {
 		return ConfigHandler.renderId;
 	}
 
+	public static boolean isBlockAModule(ItemStack stack){
+	    if(stack.isItemEqual(new ItemStack(BlockHandler.blockIdeaBuilder)))
+	        return true;
+	    if(stack.isItemEqual(new ItemStack(BlockHandler.blockCraftingTable)))
+            return true;
+	    return false;
+	}
+	
+	public static boolean isBlockAModule(int blockid){
+        if(blockid == MineTechPlus.instance.config.IDIdeaBuilder)
+            return true;
+        if(blockid == MineTechPlus.instance.config.IDCraftingTable)
+            return true;
+        return false;
+    }
+	
+	public static boolean isBlockAModule(TileEntity tile){
+	    if(tile instanceof TileIdeaBuilder)
+	        return true;
+	    if(tile instanceof TileCraftingTable)
+	        return true;
+	    return false;
+	}
+	
 }

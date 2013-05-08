@@ -69,8 +69,9 @@ public class MineTechPlus {
 		items = new ItemHandler(config);
 		blocks = new BlockHandler(config);
 		crafting = new CraftingHandler();
-		GameRegistry.registerTileEntity(me.aronth.minetechplus.blocks.tileentitys.TileWorkstation.class, "Workstation");
-		GameRegistry.registerTileEntity(me.aronth.minetechplus.blocks.tileentitys.TileIdeaBuilder.class, "IdeaBuilder");
+		GameRegistry.registerTileEntity(me.aronth.minetechplus.blocks.tileentitys.TileWorkstation.class, "MineTech:Workstation");
+		GameRegistry.registerTileEntity(me.aronth.minetechplus.blocks.tileentitys.TileIdeaBuilder.class, "MineTech:IdeaBuilder");
+		GameRegistry.registerTileEntity(me.aronth.minetechplus.blocks.tileentitys.TileCraftingTable.class, "MineTech:CraftingTable");
 		proxy.addNames();
 		proxy.registerHandlers();
 	}

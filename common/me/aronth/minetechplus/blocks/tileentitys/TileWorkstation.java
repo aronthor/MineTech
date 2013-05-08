@@ -1,5 +1,6 @@
 package me.aronth.minetechplus.blocks.tileentitys;
 
+import me.aronth.minetechplus.MineTechPlus;
 import me.aronth.minetechplus.core.helpers.IdeaHelper;
 import me.aronth.minetechplus.items.ItemIdea;
 import me.aronth.minetechplus.lib.Constants;
@@ -12,8 +13,12 @@ import net.minecraft.tileentity.TileEntity;
 
 public class TileWorkstation extends TileEntity implements IInventory{
 
-	private ItemStack[] stack = new ItemStack[2];
+	private ItemStack[] stack = new ItemStack[1];
 	private int bookcases = 0;
+	public int cooldown = 0;
+	private String clicker;
+	public int waitTime = 60*20;
+	
 	/*private int[] side = new int[6];
 	private boolean open = false;
 	
@@ -27,6 +32,28 @@ public class TileWorkstation extends TileEntity implements IInventory{
 	    
 	    return true;
 	}*/
+	
+	public boolean isRefining(EntityPlayer outsider){
+	    if(clicker == null)
+	        return false;
+	    if(outsider.username != clicker && cooldown > 0)
+	        return true;
+	    return false;
+	}
+	
+	@Override
+	public void updateEntity(){
+	    if(cooldown > 0){
+	        --cooldown;
+	        if(cooldown == 0){
+	            this.refineIdea();
+	        }
+	        if(this.worldObj.getClosestPlayer((double)((float)this.xCoord + 0.5F), (double)((float)this.yCoord + 0.5F), (double)((float)this.zCoord + 0.5F), 10.0D) == null){
+	            cooldown = 0;
+	        }
+	        System.out.println("Left:"+cooldown);
+	    }
+	}
 	
 	@Override
 	public int getSizeInventory() {
@@ -130,8 +157,8 @@ public class TileWorkstation extends TileEntity implements IInventory{
 	    return false;
 	}
 
-    public void refineIdea(EntityPlayer player) {
-        if(hasLevels(player)){
+    public void refineIdea() {
+        //if(hasLevels(player)){
             if(this.stack[0] != null){
                 if(stack[0].getItem() instanceof ItemIdea){
                     NBTTagCompound tags = stack[0].stackTagCompound;
@@ -147,7 +174,48 @@ public class TileWorkstation extends TileEntity implements IInventory{
                     }
                 }
             }
-        }
+        //}
+    }
+    
+    public void readFromNBT(NBTTagCompound data){
+        super.readFromNBT(data);
+        if(data.hasKey("slot0"))
+            stack[0] = getStackFromNBT(data.getCompoundTag("slot0"));
+        if(data.hasKey("cooldown"))
+            cooldown = data.getInteger("cooldown");
+        if(data.hasKey("clicker") && MineTechPlus.instance.playerTracker.isPlayerOnline(data.getString("clicker")))
+            clicker = data.getString("clicker");
+    }
+    
+    public void writeToNBT(NBTTagCompound data){
+        super.writeToNBT(data);
+        if(this.stack[0] != null)
+            data.setCompoundTag("slot0", getStackAsNBT(stack[0]));
+        data.setInteger("cooldown", cooldown);
+        if(clicker != null)
+            data.setString("clicker", clicker);
+    }
+    
+    public NBTTagCompound getStackAsNBT(ItemStack stack){
+        NBTTagCompound comp = new NBTTagCompound();
+        comp.setInteger("id", stack.itemID);
+        comp.setInteger("size", stack.stackSize);
+        comp.setInteger("damage", stack.getItemDamage());
+        if(stack.hasTagCompound())
+            comp.setCompoundTag("compound", stack.stackTagCompound);
+        return comp;
+    }
+    
+    public ItemStack getStackFromNBT(NBTTagCompound comp){
+        ItemStack stack = new ItemStack(comp.getInteger("id"), comp.getInteger("damage"), comp.getInteger("size"));
+        if(comp.hasKey("compound"))
+            stack.stackTagCompound = comp.getCompoundTag("compound");
+        return stack;
+    }
+
+    public void countdownToRefine(EntityPlayer me) {
+        cooldown = waitTime;
+        clicker = me.username;
     }
 	
 }

@@ -8,10 +8,12 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
 public class ContainerWorkstation extends Container{
+    
+    public TileWorkstation station;
 	
 	public ContainerWorkstation(TileWorkstation tile, IInventory playerInv){
-		
-		addSlotToContainer(new Slot(tile, 0, 134, 19));
+		station = tile;
+		addSlotToContainer(new SlotIdea(tile, 0, 134, 19));
 		//addSlotToContainer(new Slot(tile, 1, 116, 35));
 		
 		for (int i = 0; i < 3; i++) {

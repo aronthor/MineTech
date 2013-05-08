@@ -16,7 +16,8 @@
 	<entry key="idea.minersHelmet.descr">Bit of damage resistance but light emitting, who needs torches now, huh ?</entry>
 	<!-- Blocks -->
 	<entry key="tile.minetech.blockWorkstation.name">Workstation</entry>
-	<entry key="tile.minetech.blockIdeaBuilder.name">Idea Builder</entry>
+	<entry key="tile.minetech.blockIdeaBuilder.name">Idea Builder Addon</entry>
+	<entry key="tile.minetech.blockCraftingTable.name">Crafting Table Addon</entry>
 	<entry key="tile.minetech.oreBlocks.oreCopper.name">Copper Ore</entry>
 	<entry key="tile.minetech.oreBlocks.oreTin.name">Tin Ore</entry>
 	<!-- Items -->

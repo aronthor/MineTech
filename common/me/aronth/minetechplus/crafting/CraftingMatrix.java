@@ -26,8 +26,8 @@ public class CraftingMatrix implements IInventory{
     private String stackEmpty = "empty";
     
     // Sets the master and grid size
-    public CraftingMatrix(ICraftMaster craftMaster, int width, int height){
-        master = craftMaster;
+    public CraftingMatrix(ICraftMaster master, int width, int height){
+        this.master = master;
         inventory = new ItemStack[width*height];
     }
     

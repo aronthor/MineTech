@@ -76,4 +76,28 @@ public class TileIdeaBuilder extends TileEntity implements ICraftMaster{
     public void onChange() {
         this.onMatrixChange();
     }
+
+    public String getInfoMessage() {
+        if(idea.getStackInSlot(0) == null)
+            return "Need idea";
+        if(idea.getStackInSlot(0).stackTagCompound.hasKey(Constants.NBT_IDEA) == false)
+            return "Invalid idea";
+        if(idea.getStackInSlot(0).stackTagCompound.hasKey(Constants.NBT_REFINED) == false)
+            return "Please refine your idea";
+        if(idea.getStackInSlot(0).stackTagCompound.getInteger(Constants.NBT_REFINED) < 3)
+            return "Please refine your idea fully";
+        return "All is good";
+    }
+
+    public boolean getHasError() {
+        if(idea.getStackInSlot(0) == null)
+            return true;
+        if(idea.getStackInSlot(0).stackTagCompound.hasKey(Constants.NBT_IDEA) == false)
+            return true;
+        if(idea.getStackInSlot(0).stackTagCompound.hasKey(Constants.NBT_REFINED) == false)
+            return true;
+        if(idea.getStackInSlot(0).stackTagCompound.getInteger(Constants.NBT_REFINED) < 3)
+            return true;
+        return false;
+    }
 }

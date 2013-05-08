@@ -35,5 +35,9 @@ public class PlayerTracker implements IPlayerTracker{
         else
             return null;
     }
+    
+    public boolean isPlayerOnline(String username){
+        return players.containsKey(username);
+    }
 
 }

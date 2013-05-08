@@ -47,6 +47,12 @@ public class CraftingHandler {
 		GameRegistry.addShapedRecipe(new ItemStack(BlockHandler.blockWorkstation), new Object[]{
 		   "ppp", "f f", 'p', Block.planks, 'f', Block.fence 
 		});
+		GameRegistry.addShapedRecipe(new ItemStack(BlockHandler.blockCraftingTable), new Object[]{
+	       "pcp", "f f", 'p', Block.planks, 'f', Block.fence , 'c', Block.workbench
+	    });
+		GameRegistry.addShapedRecipe(new ItemStack(BlockHandler.blockWorkstation), new Object[]{
+	       " s ", "pcp", "f f", 'p', Block.planks, 'f', Block.fence, 's', Item.paper
+	    });
 	}
 	
 	private void initDebugRecipes(){

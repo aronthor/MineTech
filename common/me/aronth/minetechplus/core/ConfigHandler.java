@@ -13,7 +13,7 @@ public class ConfigHandler {
     private int itemRange = 7000;
 	
 	// Blocks
-	public int IDOreBlock, IDWorkstation, IDIdeaBuilder;
+	public int IDOreBlock, IDWorkstation, IDIdeaBuilder, IDCraftingTable;
 	// Items
 	public int IDIdeaItem, IDWonderingBook, IDPencil, IDResource;
 	// Misc
@@ -44,6 +44,10 @@ public class ConfigHandler {
 			Property blockIdeaBuilder = conf.getBlock("IdeaBuilder", blockRange+2);
 			blockIdeaBuilder.comment = "This is the extension too the workstation that lets you craft what you think off.";
             IDIdeaBuilder = blockIdeaBuilder.getInt();
+            
+            Property blockCraftingTable = conf.getBlock("CraftingTable", blockRange+3);
+            blockCraftingTable.comment = "This is a vanilla crafting table extention too the workstation, will keep inventory on gui close !";
+            IDCraftingTable = blockCraftingTable.getInt();
 			
 			// Load Item Ids
 			

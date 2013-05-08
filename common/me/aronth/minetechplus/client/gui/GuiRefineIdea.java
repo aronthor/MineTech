@@ -14,6 +14,7 @@ import me.aronth.minetechplus.lib.Reference;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.item.ItemStack;
 
 import org.lwjgl.opengl.GL11;
 
@@ -87,8 +88,8 @@ public class GuiRefineIdea extends GuiContainer {
                 if(station.getStackInSlot(0).stackTagCompound != null && station.getStackInSlot(0).stackTagCompound.hasKey(Constants.NBT_IDEA)){
                     Idea idea = Idea.getIdeaById(station.getStackInSlot(0).stackTagCompound.getInteger(Constants.NBT_IDEA));
                     if(idea != null){
-                        fontRenderer.drawString(idea.getName(), 8, 6+10, 4210752);
-                        fontRenderer.drawSplitString(idea.getDescription(), 8, 6+20, 120, 4210752);
+                        fontRenderer.drawString(idea.getName(), 8, 6+20, 4210752);
+                        fontRenderer.drawSplitString(idea.getDescription(), 8, 6+30, 120, 4210752);
                     }
                 }
             }
@@ -104,6 +105,38 @@ public class GuiRefineIdea extends GuiContainer {
         int x = (width - xSize) / 2;
         int y = (height - ySize) / 2;
         this.drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
+        drawRefineLevel();
+    }
+    
+    public void drawRefineLevel(){
+        int x = (width - xSize) / 2;
+        int y = (height - ySize) / 2;
+        int refineLevel = 0;
+        ItemStack stack = this.inventorySlots.getSlot(0).getStack();
+        if(stack == null)
+            return;
+        if(stack.hasTagCompound()){
+            if(stack.stackTagCompound.hasKey(Constants.NBT_REFINED)){
+                refineLevel = stack.stackTagCompound.getInteger(Constants.NBT_REFINED);
+                /*double percentDone = 0;
+                TileWorkstation workstation = ((TileWorkstation)((ContainerWorkstation)inventorySlots).station);
+                if(workstation.cooldown > 0)
+                    percentDone = workstation.cooldown / workstation.waitTime;
+                int width = (int) percentDone * 41;
+                System.out.println(width + " ; " + percentDone + " : " + workstation.cooldown);*/
+                int width = 0;
+                if(refineLevel > 0)
+                    this.drawTexturedModalRect(x+6, y+18, this.xSize, 0, (refineLevel == 0 ? width : 41), 6);
+                if(refineLevel > 1){
+                    this.drawTexturedModalRect(x+6+42, y+18, this.xSize, 0, (refineLevel == 1 ? width : 41), 6);
+                    this.drawTexturedModalRect(x+6+41, y+18, this.xSize, 6, 1, 6);
+                }
+                if(refineLevel > 2){
+                    this.drawTexturedModalRect(x+6+84, y+18, this.xSize, 0, (refineLevel == 2 ? width : 41), 6);
+                    this.drawTexturedModalRect(x+6+83, y+18, this.xSize, 6, 1, 6);
+                }
+            }
+        }
     }
 
 }

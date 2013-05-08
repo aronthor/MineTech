@@ -70,7 +70,8 @@ public class PacketHandler implements IPacketHandler {
                     World w = DimensionManager.getWorld(me.dimension);
                     TileEntity tile = w.getBlockTileEntity(x, y, z);
                     if(tile instanceof TileWorkstation){
-                        ((TileWorkstation) tile).refineIdea(me);
+                        //((TileWorkstation) tile).refineIdea(me);
+                        ((TileWorkstation)tile).countdownToRefine(me);
                     }
                     if(Reference.DEBUG)System.out.println("Idea Refined !!");
                 //}

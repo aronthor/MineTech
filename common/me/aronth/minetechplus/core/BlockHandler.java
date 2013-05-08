@@ -1,5 +1,6 @@
 package me.aronth.minetechplus.core;
 
+import me.aronth.minetechplus.blocks.BlockCraftingTable;
 import me.aronth.minetechplus.blocks.BlockIdeaBuilder;
 import me.aronth.minetechplus.blocks.BlockOres;
 import me.aronth.minetechplus.blocks.BlockWorkstation;
@@ -11,7 +12,7 @@ public class BlockHandler {
 
 	private ConfigHandler config;
 	
-	public static Block blockOre, blockWorkstation, blockIdeaBuilder;
+	public static Block blockOre, blockWorkstation, blockIdeaBuilder, blockCraftingTable;
 	
 	public BlockHandler(ConfigHandler configHandler){
 		config = configHandler;
@@ -21,6 +22,7 @@ public class BlockHandler {
 	public void initBlocks(){
 		blockWorkstation = new BlockWorkstation(config.IDWorkstation, Material.wood).setHardness(2.5F);
 		blockIdeaBuilder = new BlockIdeaBuilder(config.IDIdeaBuilder, Material.wood).setHardness(2.5F);
+		blockCraftingTable = new BlockCraftingTable(config.IDCraftingTable, Material.wood).setHardness(2.5F);
 		blockOre = new BlockOres(config.IDOreBlock).setHardness(3.0F).setResistance(5.0F);
 		
 		registerBlocks();
@@ -29,6 +31,7 @@ public class BlockHandler {
 	public void registerBlocks(){
 		GameRegistry.registerBlock(blockWorkstation, "Workstation");
 		GameRegistry.registerBlock(blockIdeaBuilder, "IdeaBuilder");
+		GameRegistry.registerBlock(blockCraftingTable, "CraftingTable");
 		GameRegistry.registerBlock(blockOre, me.aronth.minetechplus.items.ItemOreBlocks.class, "OreBlocks");
 	}
 	

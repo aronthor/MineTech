@@ -13,7 +13,7 @@ public class SlotIdea extends Slot {
     }
     
     public boolean isItemValid(ItemStack stack){
-        if(stack.getItem() instanceof ItemIdea && stack.stackTagCompound.hasKey(Constants.NBT_IDEA))
+        if(stack.getItem() instanceof ItemIdea && stack.hasTagCompound() && stack.stackTagCompound.hasKey(Constants.NBT_IDEA))
             return true;
         
         return false;
