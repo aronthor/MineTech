@@ -13,12 +13,13 @@ public class ConfigHandler {
     private int itemRange = 7000;
 	
 	// Blocks
-	public int IDOreBlock, IDWorkstation, IDIdeaBuilder, IDCraftingTable;
+	public int IDOreBlock, IDWorkstation, IDIdeaBuilder, IDCraftingTable, IDIdeaBlocks;
 	// Items
-	public int IDIdeaItem, IDWonderingBook, IDPencil, IDResource;
+	public int IDIdeaItem, IDWonderingBook, IDPencil, IDResource, IDMinersHelmet;
 	// Misc
 	public int ideaChance;
 	public static int renderId;
+	public boolean genOreTin, genOreCopper;
 	
 	public ConfigHandler(File configFile){
 		// Loads The Configuration File into Forges Configuration
@@ -27,10 +28,18 @@ public class ConfigHandler {
 			conf.load();
 			
 			// Misc mod settings
-			Property IdeaChanceRate = conf.get("Settings", "IdeaRate", 100);
+			Property IdeaChanceRate = conf.get("Settings", "IdeaRate", 35);
 			IdeaChanceRate.comment = "The chance of you getting an idea from crafting (fx. 1 in a 100)";
 			ideaChance = IdeaChanceRate.getInt();
 			
+			Property GenOreTin = conf.get("Settings", "GenOreTin", true);
+			GenOreTin.comment = "Should the mod generate tin";
+            genOreTin = GenOreTin.getBoolean(true);
+			
+            Property GenOreCopper = conf.get("Settings", "GenOreCopper", true);
+            GenOreCopper.comment = "Should the mod generate copper";
+            genOreCopper = GenOreCopper.getBoolean(true);
+            
 			// Load Block Ids
 			
 			Property blockOre = conf.getBlock("OreBlocks", blockRange);
@@ -48,6 +57,10 @@ public class ConfigHandler {
             Property blockCraftingTable = conf.getBlock("CraftingTable", blockRange+3);
             blockCraftingTable.comment = "This is a vanilla crafting table extention too the workstation, will keep inventory on gui close !";
             IDCraftingTable = blockCraftingTable.getInt();
+            
+            Property blockIdeaBlocks = conf.getBlock("IdeaBlocks", blockRange+4);
+            blockIdeaBlocks.comment = "These are the blocks you can build from your ideas";
+            IDIdeaBlocks = blockIdeaBlocks.getInt();
 			
 			// Load Item Ids
 			
@@ -66,6 +79,10 @@ public class ConfigHandler {
             Property itemResource = conf.getItem("ItemResources", itemRange+3);
             itemResource.comment = "Item resources like copper and tin ingots";
             IDResource = itemResource.getInt();
+            
+            Property itemMinersHelm = conf.getItem("MinersHelmet", itemRange+4);
+            itemMinersHelm.comment = "Helmet you put on for minging";
+            IDMinersHelmet = itemMinersHelm.getInt();
 			
 		}catch(RuntimeException e){
 			MineTechPlus.instance.log.log(Level.INFO, "Config file not found, creating new one");

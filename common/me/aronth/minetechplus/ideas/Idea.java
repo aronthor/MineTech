@@ -1,6 +1,7 @@
 package me.aronth.minetechplus.ideas;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import me.aronth.minetechplus.crafting.RecipesIdeaBuilder;
 import net.minecraft.block.Block;
@@ -27,7 +28,7 @@ public class Idea {
     public String ideaName;
     private ArrayList<ItemStack> materials = new ArrayList<ItemStack>();
     private Object contentOfIdea;
-    private int recipe;
+    private List<Integer> recipeList = new ArrayList<Integer>();
     
     public Idea(int id){
         if(ideaList[id] != null){
@@ -41,11 +42,11 @@ public class Idea {
     // Usefull methods
     
     public void setRecipe(int recipeId){
-        recipe = recipeId;
+        recipeList.add(recipeId);
     }
     
-    public int getRecipe(){
-        return recipe;
+    public List<Integer> getRecipes(){
+        return recipeList;
     }
     
     public void addMaterial(ItemStack material){
@@ -132,6 +133,6 @@ public class Idea {
 
     public ItemStack[] getGostIcon() {
         //return null;
-        return recipeHandler.getRecipeStacks(this.recipe);
+        return recipeHandler.getRecipeStacks(recipeList.get(0));
     }
 }

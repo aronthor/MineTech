@@ -14,7 +14,7 @@ public class MTBlockContainer extends BlockContainer{
 
     private String bName;
     
-	protected MTBlockContainer(int id, Material material) {
+	public MTBlockContainer(int id, Material material) {
 		super(id, material);
 	}
 

@@ -5,6 +5,7 @@ import static me.aronth.minetechplus.lib.Constants.NBT_INVENTORY_SIZE;
 
 import java.util.Random;
 
+import me.aronth.minetechplus.MineTechPlus;
 import me.aronth.minetechplus.core.ItemHandler;
 import me.aronth.minetechplus.ideas.Idea;
 import me.aronth.minetechplus.lib.Reference;
@@ -33,7 +34,7 @@ public class IdeaHandler implements ICraftingHandler{
 	public void popOutAnIdea(World world, EntityPlayer player, ItemStack item, IInventory crafting){
 		Random rand = new Random();
 		
-		int chance = 68;
+		int chance = MineTechPlus.instance.config.ideaChance;
 		
 		if(Reference.DEBUG)
 		    chance = 3;

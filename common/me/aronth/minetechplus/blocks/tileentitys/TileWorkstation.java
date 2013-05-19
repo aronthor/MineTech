@@ -9,13 +9,16 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.INetworkManager;
+import net.minecraft.network.packet.Packet;
+import net.minecraft.network.packet.Packet132TileEntityData;
 import net.minecraft.tileentity.TileEntity;
 
 public class TileWorkstation extends TileEntity implements IInventory{
 
 	private ItemStack[] stack = new ItemStack[1];
 	private int bookcases = 0;
-	public int cooldown = 0;
+	public int cooldown;
 	private String clicker;
 	public int waitTime = 60*20;
 	
@@ -48,10 +51,10 @@ public class TileWorkstation extends TileEntity implements IInventory{
 	        if(cooldown == 0){
 	            this.refineIdea();
 	        }
-	        if(this.worldObj.getClosestPlayer((double)((float)this.xCoord + 0.5F), (double)((float)this.yCoord + 0.5F), (double)((float)this.zCoord + 0.5F), 10.0D) == null){
+	        /*if(this.worldObj.getClosestPlayer((double)((float)this.xCoord + 0.5F), (double)((float)this.yCoord + 0.5F), (double)((float)this.zCoord + 0.5F), 10.0D) == null){
 	            cooldown = 0;
-	        }
-	        System.out.println("Left:"+cooldown);
+	        }*/
+	        //System.out.println("Left:"+cooldown);
 	    }
 	}
 	
@@ -181,7 +184,7 @@ public class TileWorkstation extends TileEntity implements IInventory{
         super.readFromNBT(data);
         if(data.hasKey("slot0"))
             stack[0] = getStackFromNBT(data.getCompoundTag("slot0"));
-        if(data.hasKey("cooldown"))
+        //if(data.hasKey("cooldown"))
             cooldown = data.getInteger("cooldown");
         if(data.hasKey("clicker") && MineTechPlus.instance.playerTracker.isPlayerOnline(data.getString("clicker")))
             clicker = data.getString("clicker");
@@ -217,5 +220,25 @@ public class TileWorkstation extends TileEntity implements IInventory{
         cooldown = waitTime;
         clicker = me.username;
     }
-	
+    
+    public void countdownToRefine(){
+        cooldown = waitTime;
+    }
+    
+    public int getTimerSlide(int w){
+        return cooldown * w / waitTime;
+    }
+    
+    @Override
+    public Packet getDescriptionPacket(){
+        NBTTagCompound tag = new NBTTagCompound();
+        this.writeToNBT(tag);
+        return new Packet132TileEntityData(this.xCoord, this.yCoord, this.zCoord, 1, tag);
+    }
+    
+    @Override
+    public void onDataPacket(INetworkManager net, Packet132TileEntityData packet){
+        NBTTagCompound tag = packet.customParam1;
+        this.readFromNBT(tag);
+    }
 }

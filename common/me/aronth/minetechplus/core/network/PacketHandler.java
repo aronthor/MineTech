@@ -73,7 +73,21 @@ public class PacketHandler implements IPacketHandler {
                         //((TileWorkstation) tile).refineIdea(me);
                         ((TileWorkstation)tile).countdownToRefine(me);
                     }
-                    if(Reference.DEBUG)System.out.println("Idea Refined !!");
+                    
+                    /*ByteArrayOutputStream bos = new ByteArrayOutputStream(20);
+                    DataOutputStream dos = new DataOutputStream(bos);
+                    try{
+                        dos.writeInt(2);
+                        dos.writeInt(x);
+                        dos.writeInt(y);
+                        dos.writeInt(z);
+                        dos.writeInt(me.dimension);
+                        dos.writeInt(((TileWorkstation)tile).cooldown);
+                    }catch(Exception e){
+                        e.printStackTrace();
+                    }
+                    PacketHelper.sendPacketToPlayer(bos, (Player)me);
+                    */
                 //}
             }
             
@@ -94,9 +108,19 @@ public class PacketHandler implements IPacketHandler {
             if(packetId == 1){
                 
             }
+            if(packetId == 2){ // Idea refining
+                /*int x = dis.readInt();
+                int y = dis.readInt();
+                int z = dis.readInt();
+                int d = dis.readInt();
+                int c = dis.readInt();
+                World w = DimensionManager.getWorld(d);
+                TileEntity tile = w.getBlockTileEntity(x, y, z);
+                if(tile instanceof TileWorkstation)
+                    ((TileWorkstation) tile).cooldown = c;*/
+            }
         }catch(Exception e){
             e.printStackTrace();
         }
 	}
-
 }

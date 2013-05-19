@@ -1,6 +1,6 @@
 package me.aronth.minetechplus.client.gui;
 
-import me.aronth.minetechplus.lib.Reference;
+import me.aronth.minetechplus.lib.Textures;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 
@@ -17,7 +17,7 @@ public class GuiButtonRefine extends GuiButton{
      */
     public void drawButton(Minecraft par1Minecraft, int par2, int par3){
         if (this.drawButton){
-            par1Minecraft.renderEngine.bindTexture(Reference.GUI_BUTTON_REFINE);
+            par1Minecraft.renderEngine.bindTexture(Textures.GUI_BUTTON_REFINE);
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
             boolean flag = par2 >= this.xPosition && par3 >= this.yPosition && par2 < this.xPosition + this.width && par3 < this.yPosition + this.height;
             int k = 0;

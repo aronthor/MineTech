@@ -1,6 +1,7 @@
 package me.aronth.minetechplus.core;
 
 import me.aronth.minetechplus.blocks.BlockCraftingTable;
+import me.aronth.minetechplus.blocks.BlockIdeaBlocks;
 import me.aronth.minetechplus.blocks.BlockIdeaBuilder;
 import me.aronth.minetechplus.blocks.BlockOres;
 import me.aronth.minetechplus.blocks.BlockWorkstation;
@@ -12,7 +13,7 @@ public class BlockHandler {
 
 	private ConfigHandler config;
 	
-	public static Block blockOre, blockWorkstation, blockIdeaBuilder, blockCraftingTable;
+	public static Block blockOre, blockWorkstation, blockIdeaBuilder, blockCraftingTable, blockIdeaBlocks;
 	
 	public BlockHandler(ConfigHandler configHandler){
 		config = configHandler;
@@ -24,6 +25,7 @@ public class BlockHandler {
 		blockIdeaBuilder = new BlockIdeaBuilder(config.IDIdeaBuilder, Material.wood).setHardness(2.5F);
 		blockCraftingTable = new BlockCraftingTable(config.IDCraftingTable, Material.wood).setHardness(2.5F);
 		blockOre = new BlockOres(config.IDOreBlock).setHardness(3.0F).setResistance(5.0F);
+		blockIdeaBlocks = new BlockIdeaBlocks(config.IDIdeaBlocks, Material.ground).setHardness(3.0F).setResistance(5.0F);
 		
 		registerBlocks();
 	}
@@ -33,6 +35,7 @@ public class BlockHandler {
 		GameRegistry.registerBlock(blockIdeaBuilder, "IdeaBuilder");
 		GameRegistry.registerBlock(blockCraftingTable, "CraftingTable");
 		GameRegistry.registerBlock(blockOre, me.aronth.minetechplus.items.ItemOreBlocks.class, "OreBlocks");
+		GameRegistry.registerBlock(blockIdeaBlocks, me.aronth.minetechplus.items.ItemIdeaBlocks.class, "IdeaBlocks");
 	}
 	
 }

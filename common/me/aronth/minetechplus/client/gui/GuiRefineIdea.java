@@ -10,11 +10,13 @@ import me.aronth.minetechplus.ideas.Idea;
 import me.aronth.minetechplus.inventory.ContainerWorkstation;
 import me.aronth.minetechplus.items.ItemIdea;
 import me.aronth.minetechplus.lib.Constants;
-import me.aronth.minetechplus.lib.Reference;
+import me.aronth.minetechplus.lib.Help;
+import me.aronth.minetechplus.lib.Textures;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 
 import org.lwjgl.opengl.GL11;
 
@@ -24,9 +26,14 @@ public class GuiRefineIdea extends GuiContainer {
 
     private TileWorkstation station;
     
-    public GuiRefineIdea(InventoryPlayer playerInv, TileWorkstation te) {
-        super(new ContainerWorkstation(te, playerInv));
-        station = te;
+    public GuiRefineIdea(InventoryPlayer playerInv, World w, int x, int y, int z) {
+        super(new ContainerWorkstation((TileWorkstation)w.getBlockTileEntity(x, y, z), playerInv));
+        station = (TileWorkstation)w.getBlockTileEntity(x, y, z);
+    }
+    
+    public GuiRefineIdea(InventoryPlayer playerInv, TileWorkstation tileWorkstation){
+        super(new ContainerWorkstation(tileWorkstation, playerInv));
+        station = tileWorkstation;
     }
     
     @SuppressWarnings({ "unchecked" })
@@ -35,11 +42,17 @@ public class GuiRefineIdea extends GuiContainer {
         super.initGui();
         //GuiButton btnRefine = new GuiButton(1, this.guiLeft+65, this.guiTop+33, 18*2+10, 20, "Refine!");
         //this.buttonList.add(btnRefine);
-        this.buttonList.add(new GuiButtonRefine(1, this.guiLeft+132, this.guiTop+19+18+5));
+        GuiButton btn = new GuiButtonRefine(1, this.guiLeft+132, this.guiTop+19+18+5);
+        btn.enabled = station.cooldown == 0;
+        this.buttonList.add(btn);
     }
     
     public void updateScreen(){
         super.updateScreen();
+        if(station.cooldown == 0){
+            //Help.log("Jarr");
+            ((GuiButton)buttonList.get(0)).enabled = true;
+        }
         /*GuiButton btnRefine = (GuiButton) buttonList.get(0);
         if(this.mc.thePlayer.experienceLevel < IdeaHelper.getRequiredLevels(station.findBookcases(), mc.thePlayer))
             btnRefine.enabled = false;
@@ -52,6 +65,7 @@ public class GuiRefineIdea extends GuiContainer {
     protected void actionPerformed(GuiButton par1GuiButton) {
         int btn = par1GuiButton.id;
         if(btn == 1){
+            par1GuiButton.enabled = false;
             ByteArrayOutputStream bos = new ByteArrayOutputStream();
             DataOutputStream dos = new DataOutputStream(bos);
             try {
@@ -64,6 +78,7 @@ public class GuiRefineIdea extends GuiContainer {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            station.countdownToRefine();
             //this.station.refineIdea(mc.thePlayer);
             /*PacketMineTech packet = new PacketRefineIdea(this.mc.thePlayer.username);
             packet.send();*/
@@ -101,7 +116,7 @@ public class GuiRefineIdea extends GuiContainer {
     @Override
     protected void drawGuiContainerBackgroundLayer(float f, int i, int j) {
         GL11.glColor4f(1f, 1f, 1f, 1f);
-        mc.renderEngine.bindTexture(Reference.GUI_REFINEIDEA);
+        mc.renderEngine.bindTexture(Textures.GUI_REFINEIDEA);
         int x = (width - xSize) / 2;
         int y = (height - ySize) / 2;
         this.drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
@@ -112,7 +127,7 @@ public class GuiRefineIdea extends GuiContainer {
         int x = (width - xSize) / 2;
         int y = (height - ySize) / 2;
         int refineLevel = 0;
-        ItemStack stack = this.inventorySlots.getSlot(0).getStack();
+        ItemStack stack = station.getStackInSlot(0);
         if(stack == null)
             return;
         if(stack.hasTagCompound()){
@@ -124,16 +139,31 @@ public class GuiRefineIdea extends GuiContainer {
                     percentDone = workstation.cooldown / workstation.waitTime;
                 int width = (int) percentDone * 41;
                 System.out.println(width + " ; " + percentDone + " : " + workstation.cooldown);*/
-                int width = 0;
+                
                 if(refineLevel > 0)
-                    this.drawTexturedModalRect(x+6, y+18, this.xSize, 0, (refineLevel == 0 ? width : 41), 6);
+                    this.drawTexturedModalRect(x+6, y+18, this.xSize, 0, 41, 6);
                 if(refineLevel > 1){
-                    this.drawTexturedModalRect(x+6+42, y+18, this.xSize, 0, (refineLevel == 1 ? width : 41), 6);
+                    this.drawTexturedModalRect(x+6+42, y+18, this.xSize, 0, 41, 6);
                     this.drawTexturedModalRect(x+6+41, y+18, this.xSize, 6, 1, 6);
                 }
                 if(refineLevel > 2){
-                    this.drawTexturedModalRect(x+6+84, y+18, this.xSize, 0, (refineLevel == 2 ? width : 41), 6);
+                    this.drawTexturedModalRect(x+6+84, y+18, this.xSize, 0, 41, 6);
                     this.drawTexturedModalRect(x+6+83, y+18, this.xSize, 6, 1, 6);
+                }
+                
+                if(station.cooldown > 0){
+                    int barWidth = station.getTimerSlide(41);
+                    Help.log("W:"+barWidth + "R:"+refineLevel);
+                    if(refineLevel == 0)
+                        this.drawTexturedModalRect(x+6, y+18, this.xSize, 0, 41-barWidth, 6);
+                    if(refineLevel == 1)
+                        this.drawTexturedModalRect(x+6+42, y+18, this.xSize, 0, 41-barWidth, 6);
+                    if(refineLevel == 2)
+                        this.drawTexturedModalRect(x+6+84, y+18, this.xSize, 0, 41-barWidth, 6);
+                    
+                    //drawTexturedModalRect(x+43, y+31-laneOneCook, 191, 16-laneOneCook, 3, laneOneCook);
+                    
+                    
                 }
             }
         }

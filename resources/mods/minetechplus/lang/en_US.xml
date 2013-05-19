@@ -7,19 +7,21 @@
 	<entry key="idea.info.refinedComplete">Completely thought out</entry>
 	<!-- Ideas -->
 	<entry key="idea.dualFurnace.name">Dual Furnace</entry>
-	<entry key="idea.dualFurnace.descr">Smelting two items at a time for the cost of 1.5 items</entry>
+	<entry key="idea.dualFurnace.descr">Smelting two items at a time, but 150% fuel consumption</entry>
 	<entry key="idea.superContainer.name">Super Container</entry>
-	<entry key="idea.superContainer.descr">Containing more items in a single chest</entry>
+	<entry key="idea.superContainer.descr">Containing more items in a single chest. Will grab items laying on the ground around it.</entry>
 	<entry key="idea.pencil.name">Pencil</entry>
-	<entry key="idea.pencil.descr">Edit signs !!</entry>
+	<entry key="idea.pencil.descr">Did you misspell something on that sign you just placed ? Now you can edit it.</entry>
 	<entry key="idea.minersHelmet.name">Miners Helmet</entry>
-	<entry key="idea.minersHelmet.descr">Bit of damage resistance but light emitting, who needs torches now, huh ?</entry>
+	<entry key="idea.minersHelmet.descr">Buffs when mining. Little damage resistance.</entry>
 	<!-- Blocks -->
 	<entry key="tile.minetech.blockWorkstation.name">Workstation</entry>
 	<entry key="tile.minetech.blockIdeaBuilder.name">Idea Builder Addon</entry>
 	<entry key="tile.minetech.blockCraftingTable.name">Crafting Table Addon</entry>
 	<entry key="tile.minetech.oreBlocks.oreCopper.name">Copper Ore</entry>
 	<entry key="tile.minetech.oreBlocks.oreTin.name">Tin Ore</entry>
+	<entry key="tile.minetech.blockIdeaBlocks.DualFurnace.name">Dual Furnace</entry>
+	<entry key="tile.minetech.blockIdeaBlocks.SuperContainer.name">Super Container</entry>
 	<!-- Items -->
 	<entry key="item.minetech.resource.name">Unknown Resource</entry>
 	<entry key="item.minetech.ingotCopper.name">Copper Ingot</entry>
@@ -27,9 +29,12 @@
 	<entry key="item.minetech.idea.name">Idea</entry>
 	<entry key="item.minetech.pencil.name">Pencil</entry>
 	<entry key="item.minetech.bookOfWondering.name">Book of Wondering</entry>
+	<entry key="item.minetech.minersHelmet.name">Miners Helmet</entry>
 	<!-- Gui -->
 	<entry key="gui.minetech.workstation">Workstation</entry>
 	<entry key="gui.minetech.ideabuilder">Idea Builder</entry>
+	<entry key="gui.minetech.dualFurnace">Dual Furnace</entry>
+	<entry key="gui.minetech.superContainer">Super Container</entry>
 	<!-- Chat messages -->
 	<entry key="chat.minetech.gotIdea">-- You just had an idea! --</entry>
 </properties>

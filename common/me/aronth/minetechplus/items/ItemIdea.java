@@ -4,7 +4,7 @@ import java.util.List;
 
 import me.aronth.minetechplus.MineTechPlus;
 import me.aronth.minetechplus.ideas.Idea;
-import me.aronth.minetechplus.lib.Reference;
+import me.aronth.minetechplus.lib.GuiIds;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -24,7 +24,7 @@ public class ItemIdea extends MTItem {
 	
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player){
 	    if(!player.isSneaking() && world.isRemote)
-	        player.openGui(MineTechPlus.instance, Reference.GUI_IDEA, world, (int)player.posX, (int)player.posY, (int)player.posZ);
+	        player.openGui(MineTechPlus.instance, GuiIds.GUI_IDEA, world, (int)player.posX, (int)player.posY, (int)player.posZ);
 		return stack;
 	}
 	
@@ -64,6 +64,7 @@ public class ItemIdea extends MTItem {
 		}catch(NullPointerException e){
 			//System.out.println(e.getMessage());
 		    // Do nothing !! There seems that this idea stack does not have any data
+		    list.add("This idea is broken!!");
 		}
 	}
 }

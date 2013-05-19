@@ -4,7 +4,8 @@ import me.aronth.minetechplus.MineTechPlus;
 import me.aronth.minetechplus.blocks.tileentitys.TileCraftingTable;
 import me.aronth.minetechplus.blocks.tileentitys.TileWorkstation;
 import me.aronth.minetechplus.core.ConfigHandler;
-import me.aronth.minetechplus.lib.Reference;
+import me.aronth.minetechplus.core.helpers.ItemStackHelper;
+import me.aronth.minetechplus.lib.GuiIds;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
@@ -36,7 +37,7 @@ public class BlockCraftingTable extends MTBlockContainer{
     
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer me, int par6, float par7, float par8, float par9) {
         if(!me.isSneaking()){
-            me.openGui(MineTechPlus.instance, Reference.GUI_CRAFTINGTABLE, world, x, y, z);
+            me.openGui(MineTechPlus.instance, GuiIds.GUI_CRAFTINGTABLE, world, x, y, z);
             return true;
         }
         return false;
@@ -84,6 +85,13 @@ public class BlockCraftingTable extends MTBlockContainer{
         if(world.getBlockTileEntity(x, y, z-1) instanceof TileWorkstation)
             return true;
         return false;
+    }
+    
+    @Override
+    public void breakBlock(World w, int x, int y, int z, int par5, int par6){
+        TileEntity tile = w.getBlockTileEntity(x, y, z);
+        ItemStackHelper.dropStacks(((TileCraftingTable)tile).craftMatrix.getInventory(),w , x, y, z);
+        super.breakBlock(w, x, y, z, par5, par6);
     }
 
 }

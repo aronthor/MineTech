@@ -1,7 +1,7 @@
 package me.aronth.minetechplus.client.gui;
 
 import me.aronth.minetechplus.inventory.ContainerBookOfWondering;
-import me.aronth.minetechplus.lib.Reference;
+import me.aronth.minetechplus.lib.Textures;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.StatCollector;
@@ -56,7 +56,7 @@ public class GuiBookOfWondering extends GuiContainer{
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float f, int i, int j) {
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		mc.renderEngine.bindTexture(Reference.GUI_BOOKOFWONDERING_TEXTURE);
+		mc.renderEngine.bindTexture(Textures.GUI_BOOKOFWONDERING_TEXTURE);
         int x = (width - xSize) / 2;
         int y = (height - ySize) / 2;
         this.drawTexturedModalRect(x, y, 0, 0, xSize, ySize);

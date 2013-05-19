@@ -2,6 +2,7 @@ package me.aronth.minetechplus.crafting;
 
 import java.util.ArrayList;
 
+import me.aronth.minetechplus.core.BlockHandler;
 import me.aronth.minetechplus.core.ItemHandler;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -15,18 +16,23 @@ public class RecipesIdeaBuilder {
         addRecipe(new IdeaRecipe(new ItemStack[]{ // Dual Furnace
                 new ItemStack(Item.ingotIron), new ItemStack(Item.ingotIron), new ItemStack(Item.ingotIron), 
                 new ItemStack(Block.furnaceIdle), new ItemStack(Item.redstone), new ItemStack(Block.furnaceIdle),
-                new ItemStack(Item.ingotIron), new ItemStack(Item.ingotIron), new ItemStack(Item.ingotIron)
-        }, new ItemStack(Block.furnaceIdle)));
+                new ItemStack(Block.cobblestone), new ItemStack(Block.cobblestone), new ItemStack(Block.cobblestone)
+        }, new ItemStack(BlockHandler.blockIdeaBlocks, 1, 0)));
         addRecipe(new IdeaRecipe(new ItemStack[]{ // Super Container
                 new ItemStack(Block.planks), new ItemStack(Block.hopperBlock), new ItemStack(Block.planks),
                 new ItemStack(Block.chest), null, new ItemStack(Block.chest),
                 new ItemStack(Block.planks), new ItemStack(Block.planks), new ItemStack(Block.planks)
-        }, new ItemStack(Block.furnaceIdle)));
+        }, new ItemStack(BlockHandler.blockIdeaBlocks, 1, 1)));
         addRecipe(new IdeaRecipe(new ItemStack[]{
                 new ItemStack(Item.stick), null, null,
                 null, new ItemStack(Item.dyePowder, 1, 0), null,
                 null, null, null
         }, new ItemStack(ItemHandler.pencil)));
+        addRecipe(new IdeaRecipe(new ItemStack[]{
+                new ItemStack(Item.dyePowder, 1, 0), new ItemStack(Block.torchWood), new ItemStack(Item.dyePowder, 1, 0),
+                new ItemStack(Item.dyePowder, 1, 11), new ItemStack(Item.helmetIron), new ItemStack(Item.dyePowder, 1, 11),
+                new ItemStack(Item.silk), null, new ItemStack(Item.silk)
+        }, new ItemStack(Item.helmetGold)));
     }
     
     public void addRecipe(IdeaRecipe recipe){

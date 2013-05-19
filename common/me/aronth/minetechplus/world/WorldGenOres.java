@@ -2,6 +2,7 @@ package me.aronth.minetechplus.world;
 
 import java.util.Random;
 
+import me.aronth.minetechplus.MineTechPlus;
 import me.aronth.minetechplus.core.BlockHandler;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
@@ -23,12 +24,13 @@ public class WorldGenOres implements IWorldGenerator{
     }
     
     public void generateSurface(Random rand, int x, int z, World w){
-        for(int i = 0; i < 70; i++){
-            (new WorldGenMinable(BlockHandler.blockOre.blockID, 0, 8, Block.stone.blockID)).generate(w, rand, x+rand.nextInt(16), 32+rand.nextInt(64), z+rand.nextInt(16));
-        }
-        for(int i = 0; i < 70; i++){
-            (new WorldGenMinable(BlockHandler.blockOre.blockID, 1, 8, Block.stone.blockID)).generate(w, rand, x+rand.nextInt(16), rand.nextInt(64), z+rand.nextInt(16));
-        }
+        if(MineTechPlus.instance.config.genOreCopper)
+            for(int i = 0; i < 70; i++)
+                (new WorldGenMinable(BlockHandler.blockOre.blockID, 0, 8, Block.stone.blockID)).generate(w, rand, x+rand.nextInt(16), 32+rand.nextInt(64), z+rand.nextInt(16));
+        
+        if(MineTechPlus.instance.config.genOreTin)
+            for(int i = 0; i < 70; i++)
+                (new WorldGenMinable(BlockHandler.blockOre.blockID, 1, 8, Block.stone.blockID)).generate(w, rand, x+rand.nextInt(16), rand.nextInt(64), z+rand.nextInt(16));
     }
     
     public void generateNether(Random rand, int x, int z, World w){

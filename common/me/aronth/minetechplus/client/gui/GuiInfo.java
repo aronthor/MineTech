@@ -3,7 +3,7 @@ package me.aronth.minetechplus.client.gui;
 import java.util.Iterator;
 import java.util.List;
 
-import me.aronth.minetechplus.lib.Reference;
+import me.aronth.minetechplus.lib.Textures;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiScreen;
@@ -39,9 +39,9 @@ public class GuiInfo extends GuiScreen{
         error = err;
         
         if(error)
-            Minecraft.getMinecraft().renderEngine.bindTexture(Reference.GUI_INFO_RED);
+            Minecraft.getMinecraft().renderEngine.bindTexture(Textures.GUI_INFO_RED);
         else
-            Minecraft.getMinecraft().renderEngine.bindTexture(Reference.GUI_INFO_GREEN);
+            Minecraft.getMinecraft().renderEngine.bindTexture(Textures.GUI_INFO_GREEN);
         
         this.drawInfoIcon(locX, locY);
         

@@ -54,16 +54,16 @@ public class TileIdeaBuilder extends TileEntity implements ICraftMaster{
         if(ideaStack.stackTagCompound.getInteger(Constants.NBT_REFINED) < 3)
             return;
         
-        Idea i = Idea.getIdeaById(ideaStack.stackTagCompound.getInteger(Constants.NBT_IDEA));
+        //Idea i = Idea.getIdeaById(ideaStack.stackTagCompound.getInteger(Constants.NBT_IDEA));
         
-        ItemStack ideaResult = Idea.recipeHandler.getRecipe(i.getRecipe()).getResault();
+        //ItemStack ideaResult = Idea.recipeHandler.getRecipe(i.getRecipe()).getResault();
         ItemStack matrixResult = Idea.recipeHandler.findMatch(matrix);
         
-        if(ideaResult == null || matrixResult == null)
+        /*if(ideaResult == null || matrixResult == null)
             return;
         
         if(!matrixResult.isItemEqual(ideaResult))
-            return;
+            return;*/
         
         this.result.setInventorySlotContents(0, matrixResult);
     }

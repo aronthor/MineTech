@@ -31,6 +31,10 @@ public class CraftingMatrix implements IInventory{
         inventory = new ItemStack[width*height];
     }
     
+    public ItemStack[] getInventory(){
+        return inventory;
+    }
+    
     // loads the matrix
     public void loadMatrix(NBTTagCompound data){
         //Help.logSide("load");

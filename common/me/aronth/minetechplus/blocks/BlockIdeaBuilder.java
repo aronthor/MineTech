@@ -4,7 +4,8 @@ import me.aronth.minetechplus.MineTechPlus;
 import me.aronth.minetechplus.blocks.tileentitys.TileIdeaBuilder;
 import me.aronth.minetechplus.blocks.tileentitys.TileWorkstation;
 import me.aronth.minetechplus.core.ConfigHandler;
-import me.aronth.minetechplus.lib.Reference;
+import me.aronth.minetechplus.core.helpers.ItemStackHelper;
+import me.aronth.minetechplus.lib.GuiIds;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
@@ -39,7 +40,7 @@ public class BlockIdeaBuilder extends MTBlockContainer{
         
         
         if(!me.isSneaking()){
-            me.openGui(MineTechPlus.instance, Reference.GUI_IDEABUILDER, world, x, y, z);
+            me.openGui(MineTechPlus.instance, GuiIds.GUI_IDEABUILDER, world, x, y, z);
             return true;
         }
         return false;
@@ -119,4 +120,12 @@ public class BlockIdeaBuilder extends MTBlockContainer{
         return meta;
     }
 
+    @Override
+    public void breakBlock(World w, int x, int y, int z, int par5, int par6) {
+        TileEntity tile = w.getBlockTileEntity(x, y, z);
+        ItemStackHelper.dropStacks(((TileIdeaBuilder) tile).matrix.getInventory(), w, x, y, z);
+        ItemStackHelper.dropStack(((TileIdeaBuilder) tile).idea.getStackInSlot(0), w, x, y, z);
+        super.breakBlock(w, x, y, z, par5, par6);
+    }
+    
 }

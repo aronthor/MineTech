@@ -7,10 +7,11 @@ import me.aronth.minetechplus.core.ConfigHandler;
 import me.aronth.minetechplus.core.CraftingHandler;
 import me.aronth.minetechplus.core.CreativeTabMineTech;
 import me.aronth.minetechplus.core.ItemHandler;
+import me.aronth.minetechplus.core.TickHandler;
 import me.aronth.minetechplus.core.helpers.PlayerTracker;
 import me.aronth.minetechplus.core.network.CommandMineTech;
 import me.aronth.minetechplus.core.network.PacketHandler;
-import me.aronth.minetechplus.core.network.ProxyCommon;
+import me.aronth.minetechplus.core.proxy.ProxyCommon;
 import me.aronth.minetechplus.lib.Reference;
 import me.aronth.minetechplus.world.WorldGenOres;
 import net.minecraft.creativetab.CreativeTabs;
@@ -28,6 +29,8 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.common.registry.TickRegistry;
+import cpw.mods.fml.relauncher.Side;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version=Reference.VERSION)
 @NetworkMod(clientSideRequired = true, serverSideRequired = true, channels = {Reference.MOD_ID}, packetHandler = PacketHandler.class)
@@ -40,7 +43,7 @@ public class MineTechPlus {
 	@Instance(Reference.MOD_ID)
 	public static MineTechPlus instance;
 	
-	@SidedProxy(clientSide = "me.aronth.minetechplus.core.network.ProxyClient", serverSide = "me.aronth.minetechplus.core.network.ProxyCommon")
+	@SidedProxy(clientSide = "me.aronth.minetechplus.core.proxy.ProxyClient", serverSide = "me.aronth.minetechplus.core.proxy.ProxyCommon")
 	public static ProxyCommon proxy;
 	
 	// Configuration Handler that handles the config file
@@ -61,7 +64,7 @@ public class MineTechPlus {
 	@PreInit
 	public void preInit(FMLPreInitializationEvent e){
 		config = new ConfigHandler(e.getSuggestedConfigurationFile());
-		//TickRegistry.registerTickHandler(new TickHandler(), Side.CLIENT);
+		TickRegistry.registerTickHandler(new TickHandler(), Side.CLIENT);
 	}
 	
 	@Init
@@ -72,6 +75,8 @@ public class MineTechPlus {
 		GameRegistry.registerTileEntity(me.aronth.minetechplus.blocks.tileentitys.TileWorkstation.class, "MineTech:Workstation");
 		GameRegistry.registerTileEntity(me.aronth.minetechplus.blocks.tileentitys.TileIdeaBuilder.class, "MineTech:IdeaBuilder");
 		GameRegistry.registerTileEntity(me.aronth.minetechplus.blocks.tileentitys.TileCraftingTable.class, "MineTech:CraftingTable");
+		GameRegistry.registerTileEntity(me.aronth.minetechplus.blocks.tileentitys.TileDualFurnace.class, "MineTech:DualFurnace");
+		GameRegistry.registerTileEntity(me.aronth.minetechplus.blocks.tileentitys.TileSuperContainer.class, "MineTech:SuperContainer");
 		proxy.addNames();
 		proxy.registerHandlers();
 	}

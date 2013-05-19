@@ -1,8 +1,11 @@
-package me.aronth.minetechplus.core;
+package me.aronth.minetechplus.client.renderer;
 
 import me.aronth.minetechplus.blocks.BlockCraftingTable;
+import me.aronth.minetechplus.blocks.BlockIdeaBlocks;
 import me.aronth.minetechplus.blocks.BlockIdeaBuilder;
 import me.aronth.minetechplus.blocks.BlockWorkstation;
+import me.aronth.minetechplus.blocks.tileentitys.TileDualFurnace;
+import me.aronth.minetechplus.core.ConfigHandler;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
@@ -14,7 +17,7 @@ import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 //import org.lwjgl.opengl.;
 
-public class BlockRenderHandler implements ISimpleBlockRenderingHandler {
+public class BlockRenderer implements ISimpleBlockRenderingHandler {
 
 	@Override
 	public void renderInventoryBlock(Block block, int metadata, int modelID, RenderBlocks renderer) {
@@ -37,6 +40,12 @@ public class BlockRenderHandler implements ISimpleBlockRenderingHandler {
 		    renderer.setRenderBounds(0, 0.7, 0, 1, 0.9, 1);
 		    renderDo(renderer, block, metadata);
 		}
+		if(block instanceof BlockIdeaBlocks){
+		    if(metadata == 0){
+		        renderer.setRenderBoundsFromBlock(block);
+		        renderDo(renderer, block, metadata);
+		    }
+		}
 	}
 
 	@Override
@@ -46,10 +55,36 @@ public class BlockRenderHandler implements ISimpleBlockRenderingHandler {
 		}
 		if(block instanceof BlockIdeaBuilder || block instanceof BlockCraftingTable)
 		    renderIdeaBuilder(world, x, y, z, block, modelId, renderer);
+		if(block instanceof BlockIdeaBlocks)
+		    renderBlockIdeaBlocks(world, x, y, z, (BlockIdeaBlocks)block, modelId, renderer);
+		
 		return false;
 	}
 
-	private void renderIdeaBuilder(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
+	private void renderBlockIdeaBlocks(IBlockAccess world, int x, int y, int z, BlockIdeaBlocks block, int modelId, RenderBlocks renderer) {
+        int meta = world.getBlockMetadata(x, y, z);
+        if(meta == 0)
+            renderDualFurnace(world, x, y, z, block, modelId, renderer);
+    }
+
+    private void renderDualFurnace(IBlockAccess world, int x, int y, int z, BlockIdeaBlocks block, int modelId, RenderBlocks renderer) {
+        TileDualFurnace tile = (TileDualFurnace)world.getBlockTileEntity(x, y, z);
+        int direction = tile.facing;
+        boolean isLit = tile.isLit;
+        if(direction > 3)direction = 0;
+        
+        renderer.setRenderBoundsFromBlock(block);
+        renderer.renderStandardBlock(block, x, y, z);
+        
+        renderer.renderFaceZNeg(block, x, y, z, block.getIconFor(0, (direction == 0 ? (isLit ? 4 : 1) : 0)));
+        renderer.renderFaceXPos(block, x, y, z, block.getIconFor(0, (direction == 1 ? (isLit ? 4 : 1) : 0)));
+        renderer.renderFaceZPos(block, x, y, z, block.getIconFor(0, (direction == 2 ? (isLit ? 4 : 1) : 0)));
+        renderer.renderFaceXNeg(block, x, y, z, block.getIconFor(0, (direction == 3 ? (isLit ? 4 : 1) : 0)));
+        
+        //System.out.println("RERENDERED");
+    }
+
+    private void renderIdeaBuilder(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
 	    // Renders the table it self
 	    renderer.setRenderBounds(0.1, 0.7, 0.1, 0.9, 0.9, 0.9);
 	    //renderer.renderFaceYPos(block, x, y, z, block.getBlockTextureFromSide(1));

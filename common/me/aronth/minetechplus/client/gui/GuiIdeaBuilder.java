@@ -5,7 +5,7 @@ import me.aronth.minetechplus.ideas.Idea;
 import me.aronth.minetechplus.inventory.ContainerIdeaBuilder;
 import me.aronth.minetechplus.items.ItemIdea;
 import me.aronth.minetechplus.lib.Constants;
-import me.aronth.minetechplus.lib.Reference;
+import me.aronth.minetechplus.lib.Textures;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.RenderHelper;
@@ -33,7 +33,7 @@ public class GuiIdeaBuilder extends GuiContainer{
         GL11.glColor4f(1f, 1f, 1f, 1f);
         int x = (width - xSize) / 2;
         int y = (height - ySize) / 2;
-        this.mc.renderEngine.bindTexture(Reference.GUI_IDAEBUILDER_TEXTURE);
+        this.mc.renderEngine.bindTexture(Textures.GUI_IDAEBUILDER_TEXTURE);
         this.drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
         //this.zLevel = 0f;
         //GuiInfo bubble = new GuiInfo(x+20, y+53, master.getInfoMessage(), master.getHasError());
@@ -100,7 +100,7 @@ public class GuiIdeaBuilder extends GuiContainer{
         
         GL11.glEnable(GL11.GL_ALPHA_TEST);
         GL11.glColor4f(1f, 1f, 1f, 0.3f);
-        this.mc.renderEngine.bindTexture(Reference.GUI_IDAEBUILDER_TEXTURE);
+        this.mc.renderEngine.bindTexture(Textures.GUI_IDAEBUILDER_TEXTURE);
         this.drawCraftingGrid(x, y, xSize, 0, size, size);
         
         //this.zLevel = 0.0F;

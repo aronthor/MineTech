@@ -2,6 +2,7 @@ package me.aronth.minetechplus.core;
 
 import me.aronth.minetechplus.items.ItemBookWondering;
 import me.aronth.minetechplus.items.ItemIdea;
+import me.aronth.minetechplus.items.ItemMinersHelmet;
 import me.aronth.minetechplus.items.ItemPencil;
 import me.aronth.minetechplus.items.ItemResources;
 import net.minecraft.item.Item;
@@ -12,7 +13,7 @@ public class ItemHandler {
 	private ConfigHandler config;
 	
 	// Empty fields for holding items
-	public static Item idea, bookOfWondering, pencil, resources;
+	public static Item idea, bookOfWondering, pencil, resources, minersHelmet;
 	
 	public ItemHandler(ConfigHandler handler){
 		config = handler;
@@ -26,5 +27,6 @@ public class ItemHandler {
 		bookOfWondering = new ItemBookWondering(config.IDWonderingBook);
 		pencil = new ItemPencil(config.IDPencil);
 		resources = new ItemResources(config.IDResource);
+		minersHelmet = new ItemMinersHelmet(config.IDMinersHelmet);
 	}
 }

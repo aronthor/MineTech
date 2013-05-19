@@ -22,6 +22,10 @@ public class BlockOres extends MTBlock{
         this.setUnlocalizedName("oreBlocks");
     }
     
+    public int damageDropped(int meta){
+        return meta;
+    }
+    
     public Icon getIcon(int side, int meta){
         return icons[meta];
     }
